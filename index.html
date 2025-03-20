@@ -80,6 +80,42 @@
             position: relative;
             z-index: 2;
             max-width: 800px;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        .hero-text {
+            flex: 1;
+        }
+        
+        .hero-image {
+            position: relative;
+        }
+        
+        .hero-profile-pic {
+            width: 250px;
+            height: 250px;
+            border-radius: 15px;
+            object-fit: cover;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-image-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 15px;
+            filter: blur(15px);
+            opacity: 0.5;
+            z-index: 1;
+            transform: translate(10px, 10px);
         }
         
         .hero h1 {
@@ -98,7 +134,9 @@
             font-size: 1.25rem;
             opacity: 0.9;
             margin-bottom: 2rem;
-            max-width: 600px;
+            max-width: 100%;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
         
         .cta-buttons {
@@ -217,7 +255,32 @@
         }
         
         /* About Section */
-        /* Dark Theme Glow Effects */
+        /* Text Visibility Enhancements */
+        p, h1, h2, h3, h4, h5, h6, li, span {
+            color: var(--text);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        .section-subtitle {
+            color: var(--text-light);
+            text-shadow: none;
+        }
+        
+        /* Enhanced text contrast */
+        .timeline-content p, 
+        .project-content p, 
+        .skill-card p,
+        .about-content p {
+            color: rgba(226, 232, 240, 0.85);
+            line-height: 1.8;
+        }
+        
+        .timeline-item li,
+        .about-content li {
+            margin-bottom: 0.8rem;
+        }
+        
+        /* Glow Effects */
         .glow-effect-blue {
             position: absolute;
             width: 150px;
@@ -863,9 +926,16 @@
                 font-size: 2.5rem;
             }
             
+            .hero-content {
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 2rem;
+            }
+            
             .cta-buttons {
                 flex-direction: column;
                 gap: 1rem;
+                align-items: center;
             }
             
             .btn {
@@ -902,17 +972,23 @@
         <div class="hero-pattern"></div>
         <div class="container">
             <div class="hero-content">
-                <h1>Mohamed Alpha Kamara</h1>
-                <p>Data Scientist | Machine Learning Engineer | Statistician</p>
-                <div class="cta-buttons">
-                    <a href="#projects" class="btn btn-primary">
-                        <i class="fas fa-eye"></i>
-                        View My Work
-                    </a>
-                    <a href="#contact" class="btn btn-outline">
-                        <i class="fas fa-paper-plane"></i>
-                        Contact Me
-                    </a>
+                <div class="hero-text">
+                    <h1>Mohamed Alpha Kamara</h1>
+                    <p>Data Scientist | Machine Learning Engineer | Statistician</p>
+                    <div class="cta-buttons">
+                        <a href="#projects" class="btn btn-primary">
+                            <i class="fas fa-eye"></i>
+                            View My Work
+                        </a>
+                        <a href="#contact" class="btn btn-outline">
+                            <i class="fas fa-paper-plane"></i>
+                            Contact Me
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="hero-image-glow"></div>
+                    <img src="/api/placeholder/400/400" alt="Mohamed Alpha Kamara" class="hero-profile-pic">
                 </div>
             </div>
         </div>
