@@ -10,12 +10,14 @@
             --primary: #2563eb;
             --secondary: #7c3aed;
             --accent: #10b981;
-            --dark: #111827;
-            --light: #f9fafb;
-            --text: #1f2937;
-            --text-light: #6b7280;
-            --border: #e5e7eb;
-            --card-bg: #ffffff;
+            --dark: #0f172a;
+            --darker: #080d16;
+            --light: #1e293b;
+            --lighter: #334155;
+            --text: #e2e8f0;
+            --text-light: #94a3b8;
+            --border: #334155;
+            --card-bg: #1e293b;
             --gradient-start: #2563eb;
             --gradient-end: #7c3aed;
         }
@@ -30,7 +32,7 @@
             font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             line-height: 1.7;
             color: var(--text);
-            background-color: var(--light);
+            background-color: var(--darker);
             overflow-x: hidden;
         }
         
@@ -69,8 +71,8 @@
             width: 100%;
             height: 100%;
             background-image: 
-                radial-gradient(circle at 25% 25%, rgba(37, 99, 235, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 75% 75%, rgba(124, 58, 237, 0.1) 0%, transparent 50%);
+                radial-gradient(circle at 25% 25%, rgba(37, 99, 235, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(124, 58, 237, 0.2) 0%, transparent 50%);
             z-index: 1;
         }
         
@@ -215,9 +217,45 @@
         }
         
         /* About Section */
+        /* Dark Theme Glow Effects */
+        .glow-effect-blue {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: var(--primary);
+            filter: blur(70px);
+            opacity: 0.15;
+        }
+        
+        .glow-effect-purple {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: var(--secondary);
+            filter: blur(70px);
+            opacity: 0.15;
+        }
+        
+        .glow-top-right {
+            top: -50px;
+            right: -50px;
+        }
+        
+        .glow-bottom-left {
+            bottom: -50px;
+            left: -50px;
+        }
+        
         .section {
             padding: 6rem 0;
             position: relative;
+            background-color: var(--dark);
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
         }
         
         .section-header {
@@ -331,18 +369,18 @@
         }
         
         .skill-card {
-            background-color: var(--card-bg);
+            background-color: var(--lighter);
             border-radius: 12px;
             padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
             border: 1px solid var(--border);
         }
         
         .skill-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            border-color: transparent;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary);
         }
         
         .skill-icon {
@@ -388,17 +426,18 @@
         }
         
         .project-card {
-            background-color: var(--card-bg);
+            background-color: var(--lighter);
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
             border: 1px solid var(--border);
         }
         
         .project-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary);
         }
         
         .project-image {
@@ -469,10 +508,16 @@
         
         .project-tag {
             padding: 0.3rem 0.8rem;
-            background-color: var(--light);
+            background-color: var(--dark);
             border-radius: 5px;
             font-size: 0.8rem;
             color: var(--text-light);
+            border: 1px solid var(--border);
+        }
+        
+        .project-tag:hover {
+            background-color: var(--primary);
+            color: white;
         }
         
         /* Experience Section */
@@ -511,10 +556,10 @@
         }
         
         .timeline-content {
-            background-color: var(--card-bg);
+            background-color: var(--lighter);
             border-radius: 12px;
             padding: 1.5rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             border: 1px solid var(--border);
             transition: all 0.3s ease;
             position: relative;
@@ -524,7 +569,8 @@
         
         .timeline-content:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary);
         }
         
         .timeline-date {
@@ -534,9 +580,9 @@
             color: var(--text-light);
             font-size: 0.9rem;
             padding: 0.5rem 1rem;
-            background-color: var(--light);
+            background-color: var(--dark);
             border-radius: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             border: 1px solid var(--border);
         }
         
@@ -874,6 +920,8 @@
     
     <!-- About Section -->
     <section id="about" class="section">
+        <div class="glow-effect-blue glow-top-right"></div>
+        <div class="glow-effect-purple glow-bottom-left"></div>
         <div class="container">
             <div class="section-header fade-in">
                 <h2 class="section-title">About Me</h2>
@@ -915,6 +963,8 @@
     
     <!-- Skills Section -->
     <section id="skills" class="section">
+        <div class="glow-effect-purple glow-top-right"></div>
+        <div class="glow-effect-blue glow-bottom-left"></div>
         <div class="container">
             <div class="section-header fade-in">
                 <h2 class="section-title">My Skills</h2>
