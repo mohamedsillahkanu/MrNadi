@@ -206,7 +206,11 @@
     <div class="dashboard-container">
         <header class="mb-8 text-center">
             <h1 class="text-4xl font-bold text-blue-900 mb-2">Lung Cancer Analysis Dashboard</h1>
-            <p class="text-lg text-gray-600">Comprehensive analysis of lung cancer risk factors and prediction models</p>
+            <p class="text-lg text-gray-600 mb-2">Comprehensive analysis of lung cancer risk factors and prediction models</p>
+            <div class="inline-block bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 rounded my-4 max-w-4xl text-left">
+                <h2 class="font-bold mb-1">Project Objective</h2>
+                <p>This project aims to identify key risk factors associated with lung cancer and develop an accurate prediction model to assist in early detection. Through analysis of patient demographics and clinical symptoms, we provide insights that can help healthcare professionals identify high-risk individuals and improve screening protocols.</p>
+            </div>
         </header>
 
         <!-- Key Metrics Section -->
@@ -225,7 +229,7 @@
                 <div class="metric-card" style="background: linear-gradient(135deg, #48bb78, #38a169);">
                     <div class="metric-label">Best Model Performance</div>
                     <div class="metric-value">94.2%</div>
-                    <div class="text-sm">AUC score</div>
+                    <div class="text-sm">AUC score (Random Forest)</div>
                 </div>
                 <div class="metric-card" style="background: linear-gradient(135deg, #9f7aea, #805ad5);">
                     <div class="metric-label">Average Age</div>
@@ -289,9 +293,13 @@
             <!-- Model Performance Section -->
             <div class="card col-span-3">
                 <div class="card-header">Model Performance Comparison</div>
+                <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4 rounded">
+                    <span class="font-bold">Best Model:</span> Random Forest achieved the highest performance with 94.2% AUC and 89.6% accuracy, demonstrating superior ability to distinguish between positive and negative lung cancer cases.
+                </div>
                 <div class="model-comparison">
-                    <div class="model-card" style="border-top: 4px solid #3182ce;">
-                        <div class="model-name">Random Forest</div>
+                    <div class="model-card" style="border-top: 4px solid #3182ce; box-shadow: 0 0 15px rgba(49, 130, 206, 0.4);">
+                        <div class="model-name text-blue-700">Random Forest</div>
+                        <div class="model-metric"><span class="font-bold">⭐ Best Model</span></div>
                         <div class="model-metric">AUC: <span class="font-bold">0.942</span></div>
                         <div class="model-metric">Accuracy: <span class="font-bold">0.896</span></div>
                         <div class="progress-bar mt-2">
@@ -347,6 +355,83 @@
                 <div class="card-header">Symptom Prevalence by Cancer Status</div>
                 <div class="chart-container">
                     <canvas id="symptomChart"></canvas>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Findings, Conclusion, Recommendations & References -->
+        <div class="mt-12">
+            <!-- Key Findings Section -->
+            <div class="card">
+                <div class="card-header">Key Findings</div>
+                <div class="p-4">
+                    <ol class="list-decimal ml-5 space-y-3">
+                        <li><strong>Demographics:</strong> Lung cancer prevalence is significantly higher in males (72.2% of cases) and individuals aged 51-70 years (56.8% of cases).</li>
+                        <li><strong>Primary Risk Factors:</strong> Smoking (78.9%), shortness of breath (75%), coughing (82%), and chest pain (70%) showed the strongest association with lung cancer diagnosis.</li>
+                        <li><strong>Predictive Modeling:</strong> The Random Forest classifier achieved the highest performance with 94.2% AUC and 89.6% accuracy, outperforming other models in all key metrics.</li>
+                        <li><strong>Feature Importance:</strong> Smoking history, shortness of breath, and coughing were identified as the most important predictive features, accounting for 46.4% of the total predictive power.</li>
+                        <li><strong>Statistical Significance:</strong> Chi-square tests confirmed significant associations (p < 0.01) between lung cancer and smoking, yellow fingers, chronic disease, and respiratory symptoms.</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <!-- Conclusions Section -->
+            <div class="card mt-6">
+                <div class="card-header">Conclusions</div>
+                <div class="p-4">
+                    <p class="mb-3">This comprehensive analysis of lung cancer risk factors and predictive modeling has yielded several important conclusions:</p>
+                    <ul class="list-disc ml-5 space-y-3">
+                        <li>Machine learning models, particularly Random Forest, can effectively predict lung cancer risk with high accuracy (89.6%) and excellent discrimination ability (AUC 94.2%).</li>
+                        <li>The combination of demographic information and clinical symptoms provides strong predictive power for lung cancer detection.</li>
+                        <li>Smoking remains the single most important risk factor, but the presence of multiple respiratory symptoms significantly increases cancer probability.</li>
+                        <li>Age is an important moderating factor, with risk increasing substantially after age 50.</li>
+                        <li>The identified classification model could serve as an effective screening tool to identify high-risk individuals for further diagnostic testing.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Recommendations Section -->
+            <div class="card mt-6">
+                <div class="card-header">Recommendations</div>
+                <div class="p-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="font-bold text-blue-800 mb-2">Clinical Recommendations</h3>
+                            <ul class="list-disc ml-5 space-y-2">
+                                <li>Implement the Random Forest model as a supplementary screening tool in primary care settings.</li>
+                                <li>Prioritize lung cancer screening for patients with multiple high-risk factors, especially smokers over 50 with respiratory symptoms.</li>
+                                <li>Develop targeted prevention programs focused on smoking cessation for the highest-risk populations.</li>
+                                <li>Create clinical decision support systems that integrate these predictive factors into routine assessments.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-blue-800 mb-2">Research Recommendations</h3>
+                            <ul class="list-disc ml-5 space-y-2">
+                                <li>Validate the predictive model with external datasets from diverse populations.</li>
+                                <li>Investigate potential interactions between risk factors to refine prediction accuracy.</li>
+                                <li>Explore integration of genetic and environmental factors into the prediction model.</li>
+                                <li>Conduct longitudinal studies to evaluate the model's performance in early detection scenarios.</li>
+                                <li>Develop and test mobile applications that implement the predictive model for wider accessibility.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- References Section -->
+            <div class="card mt-6">
+                <div class="card-header">References</div>
+                <div class="p-4">
+                    <ol class="list-decimal ml-5 space-y-2 text-sm">
+                        <li>World Health Organization. (2024). Cancer Fact Sheet. Retrieved from https://www.who.int/news-room/fact-sheets/detail/cancer</li>
+                        <li>American Cancer Society. (2024). Key Statistics for Lung Cancer. Retrieved from https://www.cancer.org/cancer/lung-cancer/about/key-statistics.html</li>
+                        <li>Siegel, R. L., Miller, K. D., Fuchs, H. E., & Jemal, A. (2023). Cancer Statistics, 2023. CA: A Cancer Journal for Clinicians, 73(1), 17-48.</li>
+                        <li>Breiman, L. (2001). Random forests. Machine Learning, 45(1), 5-32.</li>
+                        <li>Hosny, A., Parmar, C., Quackenbush, J., Schwartz, L. H., & Aerts, H. J. W. L. (2018). Artificial intelligence in radiology. Nature Reviews Cancer, 18(8), 500-510.</li>
+                        <li>Cruz, J. A., & Wishart, D. S. (2006). Applications of machine learning in cancer prediction and prognosis. Cancer Informatics, 2, 59-77.</li>
+                        <li>Centers for Disease Control and Prevention. (2024). What Are the Risk Factors for Lung Cancer? Retrieved from https://www.cdc.gov/cancer/lung/basic_info/risk_factors.htm</li>
+                        <li>National Cancer Institute. (2024). Lung Cancer—Patient Version. Retrieved from https://www.cancer.gov/types/lung</li>
+                    </ol>
                 </div>
             </div>
         </div>
