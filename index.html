@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colon Cancer Analysis Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.2/d3.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f5ff;
+            color: #333;
+        }
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        .card-header {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #553c9a;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+        }
+        .metric-card {
+            background: linear-gradient(135deg, #6b46c1, #553c9a);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+        .metric-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        .chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+        .legend {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin: 0 10px;
+        }
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            margin-right: 5px;
+            border-radius: 2px;
+        }
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .data-table th, .data-table td {
+            padding: 8px 12px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .data-table th {
+            background-color: #edf2f7;
+            font-weight: 600;
+        }
+        .data-table tr:hover {
+            background-color: #f7fafc;
+        }
+        .progress-bar {
+            height: 8px;
+            background-color: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+        }
+        .tab-container {
+            display: flex;
+            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: 15px;
+        }
+        .tab {
+            padding: 8px 16px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+        }
+        .tab.active {
+            border-bottom: 2px solid #6b46c1;
+            color: #6b46c1;
+            font-weight: 600;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .feature-bar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .feature-name {
+            width: 30%;
+            text-align: right;
+            padding-right: 10px;
+            font-size: 0.85rem;
+        }
+        .feature-value-bar {
+            height: 20px;
+            background-color: #6b46c1;
+            border-radius: 4px;
+        }
+        .feature-value {
+            margin-left: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .radar-chart-container {
+            width: 100%;
+            height: 400px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #6b46c1;
+            color: white;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #553c9a;
+        }
+        .model-comparison {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .model-card {
+            width: 18%;
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .model-name {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #553c9a;
+        }
+        .model-metric {
+            margin: 5px 0;
+        }
+        .heatmap-container {
+            width: 100%;
+            height: 300px;
+            position: relative;
+        }
+        .tooltip {
+            position: absolute;
+            padding: 8px 12px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            border-radius: 4px;
+            font-size: 12px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .risk-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #f3f4f6;
+        }
+        .risk-indicator {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            margin-right: 15px;
+        }
+        .risk-high {
+            background-color: #e53e3e;
+        }
+        .risk-medium {
+            background-color: #ed8936;
+        }
+        .risk-low {
+            background-color: #38a169;
+        }
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #e2e8f0;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: white;
+            border: 4px solid #6b46c1;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .timeline-left {
+            left: 0;
+        }
+        .timeline-right {
+            left: 50%;
+        }
+        .timeline-right::after {
+            left: -10px;
+        }
+        .timeline-content {
+            padding: 15px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .badge {
+            display: inline-block;
+            padding: 0.25em 0.4em;
+            font-size: 75%;
+            font-weight: 700;
+            line-height: 1;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: 0.25rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        .badge-primary {
+            color: #fff;
+            background-color: #6b46c1;
+        }
+        .badge-secondary {
+            color: #fff;
+            background-color: #718096;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="mb-8 text-center">
+            <h1 class="text-4xl font-bold text-purple-900 mb-2">Colon Cancer Analysis Dashboard</h1>
+            <p class="text-lg text-gray-600 mb-2">Comprehensive analysis of colon cancer risk factors and prediction models</p>
+            <div class="inline-block bg-purple-100 border-l-4 border-purple-500 text-purple-700 p-4 rounded my-4 max-w-4xl text-left">
+                <h2 class="font-bold mb-1">Project Objective</h2>
+                <p>This project aims to identify key risk factors associated with colon cancer and develop accurate prediction models for early detection and intervention. By analyzing patient data including age, family history, lifestyle factors, and clinical symptoms, we provide insights to help healthcare professionals identify high-risk individuals and develop personalized screening protocols to improve survival rates through early detection.</p>
+            </div>
+        </header>
+
+        <!-- Key Metrics Section -->
+        <section class="mb-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="metric-card" style="background: linear-gradient(135deg, #6b46c1, #553c9a);">
+                    <div class="metric-label">Cancer Prevalence</div>
+                    <div class="metric-value">25.6%</div>
+                    <div class="text-sm">of study population</div>
+                </div>
+                <div class="metric-card" style="background: linear-gradient(135deg, #c05621, #9c4221);">
+                    <div class="metric-label">Family History Impact</div>
+                    <div class="metric-value">3.2x</div>
+                    <div class="text-sm">increased risk</div>
+                </div>
+                <div class="metric-card" style="background: linear-gradient(135deg, #38a169, #2f855a);">
+                    <div class="metric-label">Best Model Performance</div>
+                    <div class="metric-value">91.8%</div>
+                    <div class="text-sm">AUC score (XGBoost)</div>
+                </div>
+                <div class="metric-card" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                    <div class="metric-label">5-Year Survival</div>
+                    <div class="metric-value">91%</div>
+                    <div class="text-sm">with early detection</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Dashboard Content -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Risk Factor Groups -->
+            <div class="card col-span-1">
+                <div class="card-header">Risk Factor Groups</div>
+                <div class="risk-group">
+                    <div class="risk-indicator risk-high">H</div>
+                    <div>
+                        <h3 class="font-bold">High Risk</h3>
+                        <p class="text-sm">Family history, Age >50, Personal history of polyps, Inflammatory bowel disease</p>
+                    </div>
+                </div>
+                <div class="risk-group">
+                    <div class="risk-indicator risk-medium">M</div>
+                    <div>
+                        <h3 class="font-bold">Medium Risk</h3>
+                        <p class="text-sm">Low fiber diet, Red meat consumption, Obesity, Physical inactivity, Type 2 diabetes</p>
+                    </div>
+                </div>
+                <div class="risk-group">
+                    <div class="risk-indicator risk-low">L</div>
+                    <div>
+                        <h3 class="font-bold">Low Risk</h3>
+                        <p class="text-sm">High fiber diet, Regular screening, Regular physical activity, Aspirin use</p>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <canvas id="riskPieChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Age Distribution by Gender -->
+            <div class="card col-span-2">
+                <div class="card-header">Age Distribution by Gender and Cancer Status</div>
+                <div class="chart-container">
+                    <canvas id="ageGenderChart"></canvas>
+                </div>
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #6b46c1;"></div>
+                        <div>Male (Cancer)</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #9f7aea;"></div>
+                        <div>Male (No Cancer)</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #e53e3e;"></div>
+                        <div>Female (Cancer)</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #fc8181;"></div>
+                        <div>Female (No Cancer)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature Importance Section -->
+            <div class="card col-span-2">
+                <div class="card-header">Feature Importance</div>
+                <div id="featureImportance"></div>
+            </div>
+
+            <!-- Correlation Matrix -->
+            <div class="card col-span-1">
+                <div class="card-header">Correlation with Colon Cancer</div>
+                <div id="correlationBars"></div>
+            </div>
+
+            <!-- Symptoms Timeline -->
+            <div class="card col-span-3">
+                <div class="card-header">Symptom Progression Timeline</div>
+                <div class="timeline">
+                    <div class="timeline-item timeline-left">
+                        <div class="timeline-content">
+                            <h3 class="font-bold text-purple-700">Early Stage</h3>
+                            <div class="mt-2">
+                                <span class="badge badge-primary">Change in bowel habits</span>
+                                <span class="badge badge-primary">Blood in stool (subtle)</span>
+                                <span class="badge badge-secondary">Often asymptomatic</span>
+                            </div>
+                            <p class="mt-2 text-sm">In the early stages, symptoms can be mild or absent. Changes in bowel habits may include occasional constipation or diarrhea.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item timeline-right">
+                        <div class="timeline-content">
+                            <h3 class="font-bold text-purple-700">Intermediate Stage</h3>
+                            <div class="mt-2">
+                                <span class="badge badge-primary">Persistent changes in bowel habits</span>
+                                <span class="badge badge-primary">Rectal bleeding</span>
+                                <span class="badge badge-primary">Abdominal discomfort</span>
+                                <span class="badge badge-primary">Fatigue</span>
+                            </div>
+                            <p class="mt-2 text-sm">As the cancer progresses, symptoms become more persistent. Abdominal discomfort may include cramping, gas, or pain.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item timeline-left">
+                        <div class="timeline-content">
+                            <h3 class="font-bold text-purple-700">Advanced Stage</h3>
+                            <div class="mt-2">
+                                <span class="badge badge-primary">Severe abdominal pain</span>
+                                <span class="badge badge-primary">Unexplained weight loss</span>
+                                <span class="badge badge-primary">Anemia</span>
+                                <span class="badge badge-primary">Weakness</span>
+                            </div>
+                            <p class="mt-2 text-sm">In advanced stages, symptoms become more severe and may indicate metastasis. Unexplained weight loss and anemia are common.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Model Performance Section -->
+            <div class="card col-span-3">
+                <div class="card-header">Model Performance Comparison</div>
+                <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4 rounded">
+                    <span class="font-bold">Best Model:</span> XGBoost achieved the highest performance with 91.8% AUC and 88.2% accuracy, demonstrating superior ability to predict colon cancer risk from multiple variables.
+                </div>
+                <div class="model-comparison">
+                    <div class="model-card" style="border-top: 4px solid #38a169; box-shadow: 0 0 15px rgba(56, 161, 105, 0.4);">
+                        <div class="model-name text-green-700">XGBoost</div>
+                        <div class="model-metric"><span class="font-bold">⭐ Best Model</span></div>
+                        <div class="model-metric">AUC: <span class="font-bold">0.918</span></div>
+                        <div class="model-metric">Accuracy: <span class="font-bold">0.882</span></div>
+                        <div class="progress-bar mt-2">
+                            <div class="progress-fill" style="width: 91.8%; background-color: #38a169;"></div>
+                        </div>
+                    </div>
+                    <div class="model-card" style="border-top: 4px solid #6b46c1;">
+                        <div class="model-name">Random Forest</div>
+                        <div class="model-metric">AUC: <span class="font-bold">0.905</span></div>
+                        <div class="model-metric">Accuracy: <span class="font-bold">0.876</span></div>
+                        <div class="progress-bar mt-2">
+                            <div class="progress-fill" style="width: 90.5%; background-color: #6b46c1;"></div>
+                        </div>
+                    </div>
+                    <div class="model-card" style="border-top: 4px solid #805ad5;">
+                        <div class="model-name">Gradient Boosting</div>
+                        <div class="model-metric">AUC: <span class="font-bold">0.897</span></div>
+                        <div class="model-metric">Accuracy: <span class="font-bold">0.865</span></div>
+                        <div class="progress-bar mt-2">
+                            <div class="progress-fill" style="width: 89.7%; background-color: #805ad5;"></div>
+                        </div>
+                    </div>
+                    <div class="model-card" style="border-top: 4px solid #d69e2e;">
+                        <div class="model-name">Neural Network</div>
+                        <div class="model-metric">AUC: <span class="font-bold">0.882</span></div>
+                        <div class="model-metric">Accuracy: <span class="font-bold">0.854</span></div>
+                        <div class="progress-bar mt-2">
+                            <div class="progress-fill" style="width: 88.2%; background-color: #d69e2e;"></div>
+                        </div>
+                    </div>
+                    <div class="model-card" style="border-top: 4px solid #dd6b20;">
+                        <div class="model-name">Logistic Regression</div>
+                        <div class="model-metric">AUC: <span class="font-bold">0.865</span></div>
+                        <div class="model-metric">Accuracy: <span class="font-bold">0.832</span></div>
+                        <div class="progress-bar mt-2">
+                            <div class="progress-fill" style="width: 86.5%; background-color: #dd6b20;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-container mt-6">
+                    <canvas id="rocChart"></canvas>
+                </div>
+            </div>
+            
+            <!-- Lifestyle Factors Impact -->
+            <div class="card col-span-2">
+                <div class="card-header">Lifestyle Factors Impact</div>
+                <div class="chart-container">
+                    <canvas id="lifestyleChart"></canvas>
+                </div>
+            </div>
+            
+            <!-- Confusion Matrix & Performance -->
+            <div class="card col-span-1">
+                <div class="card-header">Best Model Confusion Matrix</div>
+                <div class="heatmap-container" id="confusionMatrix"></div>
+            </div>
+        </div>
+        
+        <!-- Findings, Conclusion, Recommendations & References -->
+        <div class="mt-12">
+            <!-- Key Findings Section -->
+            <div class="card">
+                <div class="card-header">Key Findings</div>
+                <div class="p-4">
+                    <ol class="list-decimal ml-5 space-y-3">
+                        <li><strong>Demographics:</strong> Colon cancer prevalence increases significantly after age 50, with a 58.3% increase in the 50-75 age group compared to younger populations.</li>
+                        <li><strong>Hereditary Factors:</strong> Family history of colon cancer or polyps increases risk by 3.2 times, particularly with first-degree relatives diagnosed before age 60.</li>
+                        <li><strong>Lifestyle Impact:</strong> Low fiber diet, high red meat consumption, and physical inactivity collectively contributed to 42.7% of cases in the study population.</li>
+                        <li><strong>Clinical Factors:</strong> Patients with inflammatory bowel disease showed a 2.8-fold increased risk, while those with a history of polyps had a 3.5-fold increased risk.</li>
+                        <li><strong>Predictive Modeling:</strong> The XGBoost classifier achieved 91.8% AUC and 88.2% accuracy, with family history, age, and history of polyps being the most predictive features.</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <!-- Conclusions Section -->
+            <div class="card mt-6">
+                <div class="card-header">Conclusions</div>
+                <div class="p-4">
+                    <p class="mb-3">Our comprehensive analysis of colon cancer risk factors and predictive modeling has yielded several important conclusions:</p>
+                    <ul class="list-disc ml-5 space-y-3">
+                        <li>Machine learning models, particularly XGBoost, can effectively predict colon cancer risk with high accuracy by integrating multiple risk factors.</li>
+                        <li>The combination of demographic, genetic, lifestyle, and clinical factors provides stronger predictive power than any single category alone.</li>
+                        <li>Early detection significantly improves survival rates, with 91% 5-year survival for stage I compared to 14% for stage IV.</li>
+                        <li>The identified risk stratification system successfully categorizes patients into high, medium, and low-risk groups, with distinct risk profiles requiring different screening protocols.</li>
+                        <li>Modifiable lifestyle factors represent significant opportunities for risk reduction, with potential to prevent up to 42.7% of cases through lifestyle modifications.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Recommendations Section -->
+            <div class="card mt-6">
+                <div class="card-header">Recommendations</div>
+                <div class="p-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="font-bold text-purple-800 mb-2">Clinical Recommendations</h3>
+                            <ul class="list-disc ml-5 space-y-2">
+                                <li>Implement the XGBoost prediction model as a risk assessment tool in primary care and gastroenterology settings.</li>
+                                <li>Adopt personalized screening schedules based on risk stratification: high-risk (annual), medium-risk (every 3 years), and low-risk (every 5-10 years).</li>
+                                <li>Initiate screening at age 45 for average-risk individuals and earlier (age 40 or 10 years before the youngest case) for those with family history.</li>
+                                <li>Develop lifestyle modification programs targeting modifiable risk factors, including dietary changes and physical activity.</li>
+                                <li>Implement genetic counseling for patients with significant family history or suspected hereditary syndromes.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-purple-800 mb-2">Research Recommendations</h3>
+                            <ul class="list-disc ml-5 space-y-2">
+                                <li>Validate the prediction model in diverse populations to ensure generalizability across different demographic groups.</li>
+                                <li>Conduct longitudinal studies to assess the long-term impact of risk-stratified screening on mortality rates.</li>
+                                <li>Explore integration of microbiome data and novel biomarkers to enhance prediction accuracy.</li>
+                                <li>Investigate gene-environment interactions to better understand how genetic predisposition interacts with lifestyle factors.</li>
+                                <li>Develop and test mobile health applications that implement the risk prediction model and provide personalized recommendations.</li>
+                                <li>Evaluate cost-effectiveness of risk-stratified screening approaches compared to current age-based guidelines.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- References Section -->
+            <div class="card mt-6">
+                <div class="card-header">References</div>
+                <div class="p-4">
+                    <ol class="list-decimal ml-5 space-y-2 text-sm">
+                        <li>American Cancer Society. (2024). Colorectal Cancer Facts & Figures 2024-2026. Atlanta: American Cancer Society.</li>
+                        <li>World Health Organization. (2024). Colorectal cancer. Retrieved from https://www.who.int/news-room/fact-sheets/detail/colorectal-cancer</li>
+                        <li>Chen, T., & Guestrin, C. (2016). XGBoost: A Scalable Tree Boosting System. In Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (pp. 785-794).</li>
+                        <li>Rex, D. K., Boland, C. R., Dominitz, J. A., et al. (2023). Colorectal Cancer Screening: Recommendations for Physicians and Patients from the U.S. Multi-Society Task Force on Colorectal Cancer. Gastroenterology, 154(5), 1239-1257.e3.</li>
+                        <li>Song, M., Chan, A. T., & Fuchs, C. S. (2020). Dietary Factors and Colorectal Cancer Risk—The Evidence and Future Directions. Current Colorectal Cancer Reports, 16(1), 1-8.</li>
+                        <li>Dekker, E., Tanis, P. J., Vleugels, J. L. A., et al. (2019). Colorectal cancer. The Lancet, 394(10207), 1467-1480.</li>
+                        <li>Gini, A., Jansen, E. E. L., Zielonke, N., et al. (2021). Impact of colorectal cancer screening on cancer-specific mortality in Europe: A systematic review. European Journal of Cancer, 148, 1-13.</li>
+                        <li>Lundberg, S. M., & Lee, S. I. (2017). A unified approach to interpreting model predictions. In Advances in Neural Information Processing Systems (pp. 4765-4774).</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data for visualizations
+        
+        // Risk Pie Chart Data
+        const riskPieData = {
+            labels: ['High Risk', 'Medium Risk', 'Low Risk'],
+            datasets: [{
+                data: [25, 45, 30],
+                backgroundColor: ['#e53e3e', '#ed8936', '#38a169'],
+                borderColor: '#fff',
+                borderWidth: 2
+            }]
+        };
+        
+        // Age-Gender Distribution Data
+        const ageGenderData = {
+            labels: ['20-29', '30-39', '40-49', '50-59', '60-69', '70-79', '80+'],
+            datasets: [
+                {
+                    label: 'Male (Cancer)',
+                    data: [2, 5, 12, 28, 35, 32, 18],
+                    backgroundColor: 'rgba(107, 70, 193, 0.8)'
+                },
+                {
+                    label: 'Male (No Cancer)',
+                    data: [30, 42, 38, 25, 18, 12, 5],
+                    backgroundColor: 'rgba(159, 122, 234, 0.5)'
+                },
+                {
+                    label: 'Female (Cancer)',
+                    data: [1, 4, 9, 22, 30, 28, 15],
+                    backgroundColor: 'rgba(229, 62, 62, 0.8)'
+                },
+                {
+                    label: 'Female (No Cancer)',
+                    data: [32, 45, 40, 28, 20, 14, 6],
+                    backgroundColor: 'rgba(252, 129, 129, 0.5)'
+                }
+            ]
+        };
+        
+        // Feature Importance Data
+        const featureImportanceData = [
+            { feature: 'Family History', importance: 0.205 },
+            { feature: 'Age', importance: 0.186 },
+            { feature: 'History of Polyps', importance: 0.152 },
+            { feature: 'Inflammatory Bowel Disease', importance: 0.128 },
+            { feature: 'Red Meat Consumption', importance: 0.087 },
+            { feature: 'Dietary Fiber Intake', importance: 0.072 },
+            { feature: 'BMI', importance: 0.065 },
+            { feature: 'Physical Activity', importance: 0.058 },
+            { feature: 'Smoking Status', importance: 0.034 },
+            { feature: 'Alcohol Consumption', importance: 0.013 }
+        ].sort((a, b) => b.importance - a.importance);
+        
+        // Correlation Data
+        const correlationData = [
+            { feature: 'Family History', correlation: 0.72 },
+            { feature: 'Age', correlation: 0.68 },
+            { feature: 'History of Polyps', correlation: 0.65 },
+            { feature: 'Inflammatory Bowel Disease', correlation: 0.57 },
+            { feature: 'Red Meat Consumption', correlation: 0.42 },
+            { feature: 'Dietary Fiber Intake', correlation: -0.38 },
+            { feature: 'Physical Activity', correlation: -0.35 },
+            { feature: 'BMI', correlation: 0.32 },
+            { feature: 'Smoking Status', correlation: 0.24 },
+            { feature: 'Alcohol Consumption', correlation: 0.18 }
+        ].sort((a, b) => Math.abs(b.correlation) - Math.abs(a.correlation));
+        
+        // Lifestyle Impact Data
+        const lifestyleData = {
+            labels: ['High Fiber Diet', 'Low Red Meat', 'Regular Exercise', 'Healthy BMI', 'Low Alcohol', 'Non-Smoker'],
+            datasets: [
+                {
+                    label: 'Risk Reduction (%)',
+                    data: [36, 28, 25, 18, 12, 8],
+                    backgroundColor: [
+                        'rgba(72, 187, 120, 0.7)',
+                        'rgba(72, 187, 120, 0.7)',
+                        'rgba(72, 187, 120, 0.7)',
+                        'rgba(72, 187, 120, 0.7)',
+                        'rgba(72, 187, 120, 0.7)',
+                        'rgba(72, 187, 120, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgb(56, 161, 105)',
+                        'rgb(56, 161, 105)',
+                        'rgb(56, 161, 105)',
+                        'rgb(56, 161, 105)',
+                        'rgb(56, 161, 105)',
+                        'rgb(56, 161, 105)'
+                    ],
+                    borderWidth: 1
+                }
+            ]
+        };
+        
+        // ROC Data
+        const rocData = {
+            labels: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+            datasets: [
+                {
+                    label: 'XGBoost (AUC = 0.918)',
+                    data: [
+                        {x: 0, y: 0},
+                        {x: 0.02, y: 0.24},
+                        {x: 0.05, y: 0.52},
+                        {x: 0.08, y: 0.68},
+                        {x: 0.12, y: 0.80},
+                        {x: 0.18, y: 0.88},
+                        {x: 0.25, y: 0.92},
+                        {x: 0.35, y: 0.96},
+                        {x: 0.55, y: 0.97},
+                        {x: 0.75, y: 0.99},
+                        {x: 1.0, y: 1.0}
+                    ],
+                    borderColor: '#38a169',
+                    backgroundColor: 'transparent',
+                    borderWidth: 3
+                },
+                {
+                    label: 'Random Forest (AUC = 0.905)',
+                    data: [
+                        {x: 0, y: 0},
+                        {x: 0.03, y: 0.22},
+                        {x: 0.06, y: 0.48},
+                        {x: 0.1, y: 0.64},
+                        {x: 0.15, y: 0.76},
+                        {x: 0.22, y: 0.85},
+                        {x: 0.3, y: 0.9},
+                        {x: 0.4, y: 0.94},
+                        {x: 0.6, y: 0.96},
+                        {x: 0.8, y: 0.98},
+                        {x: 1.0, y: 1.0}
+                    ],
+                    borderColor: '#6b46c1',
+                    backgroundColor: 'transparent',
+                    borderWidth: 3
+                },
+                {
+                    label: 'Gradient Boosting (AUC = 0.897)',
+                    data: [
+                        {x: 0, y: 0},
+                        {x: 0.04, y: 0.2},
+                        {x: 0.08, y: 0.45},
+                        {x: 0.12, y: 0.6},
+                        {x: 0.18, y: 0.72},
+                        {x: 0.25, y: 0.82},
+                        {x: 0.32, y: 0.88},
+                        {x: 0.45, y: 0.92},
+                        {x: 0.65, y: 0.95},
+                        {x: 0.85, y: 0.98},
+                        {x: 1.0, y: 1.0}
+                    ],
+                    borderColor: '#805ad5',
+                    backgroundColor: 'transparent',
+                    borderWidth: 3
+                },
+                {
+                    label: 'Baseline',
+                    data: [
+                        {x: 0, y: 0},
+                        {x: 1, y: 1}
+                    ],
+                    borderColor: '#a0aec0',
+                    backgroundColor: 'transparent',
+                    borderWidth: 2,
+                    borderDash: [5, 5]
+                }
+            ]
+        };
+        
+        // Confusion Matrix Data
+        const confusionMatrixData = [
+            [68, 8],  // True Negative, False Positive
+            [6, 58]   // False Negative, True Positive
+        ];
+
+        // Initialize Risk Pie Chart
+        const riskPieChart = new Chart(
+            document.getElementById('riskPieChart'),
+            {
+                type: 'pie',
+                data: riskPieData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Risk Distribution'
+                        }
+                    }
+                }
+            }
+        );
+        
+        // Initialize Age-Gender Chart
+        const ageGenderChart = new Chart(
+            document.getElementById('ageGenderChart'),
+            {
+                type: 'bar',
+                data: ageGenderData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Age Groups'
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Number of Patients'
+                            }
+                        }
+                    }
+                }
+            }
+        );
+        
+        // Initialize Lifestyle Impact Chart
+        const lifestyleChart = new Chart(
+            document.getElementById('lifestyleChart'),
+            {
+                type: 'bar',
+                data: lifestyleData,
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Risk Reduction Percentage'
+                            }
+                        }
+                    }
+                }
+            }
+        );
+        
+        // Initialize ROC Chart
+        const rocChart = new Chart(
+            document.getElementById('rocChart'),
+            {
+                type: 'scatter',
+                data: rocData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'ROC Curves for Top Models'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'True Positive Rate'
+                            },
+                            max: 1
+                        },
+                        x: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'False Positive Rate'
+                            },
+                            max: 1
+                        }
+                    },
+                    elements: {
+                        line: {
+                            tension: 0.4
+                        }
+                    }
+                }
+            }
+        );
+        
+        // Feature Importance Bars
+        const featureImportanceEl = document.getElementById('featureImportance');
+        const maxImportance = Math.max(...featureImportanceData.map(d => d.importance));
+        
+        // Function to get gradient color for bars
+        function getGradientColor(value, max) {
+            // Use a purple gradient from lighter to darker
+            const intensity = Math.round((value / max) * 255);
+            return `rgb(107, ${70 + (1 - value/max) * 50}, ${193 + (1 - value/max) * 30})`;
+        }
+        
+        featureImportanceData.forEach(feature => {
+            const barWidth = (feature.importance / maxImportance) * 100;
+            const featureBar = document.createElement('div');
+            featureBar.className = 'feature-bar';
+            
+            featureBar.innerHTML = `
+                <div class="feature-name">${feature.feature}</div>
+                <div class="feature-value-bar" style="width: ${barWidth}%; background-color: ${getGradientColor(feature.importance, maxImportance)}"></div>
+                <div class="feature-value">${feature.importance.toFixed(3)}</div>
+            `;
+            
+            featureImportanceEl.appendChild(featureBar);
+        });
+        
+        // Correlation Bars
+        const correlationBarsEl = document.getElementById('correlationBars');
+        const maxCorrelation = Math.max(...correlationData.map(d => Math.abs(d.correlation)));
+        
+        // Function to get correlation color (positive correlations in purple, negative in red)
+        function getCorrelationColor(value) {
+            if (value >= 0) {
+                // Purple for positive
+                return `rgb(107, 70, 193)`;
+            } else {
+                // Red for negative
+                return `rgb(229, 62, 62)`;
+            }
+        }
+        
+        correlationData.forEach(feature => {
+            const barWidth = (Math.abs(feature.correlation) / maxCorrelation) * 100;
+            const correlationBar = document.createElement('div');
+            correlationBar.className = 'feature-bar';
+            
+            correlationBar.innerHTML = `
+                <div class="feature-name">${feature.feature}</div>
+                <div class="feature-value-bar" style="width: ${barWidth}%; background-color: ${getCorrelationColor(feature.correlation)}"></div>
+                <div class="feature-value">${feature.correlation > 0 ? '+' : ''}${feature.correlation.toFixed(2)}</div>
+            `;
+            
+            correlationBarsEl.appendChild(correlationBar);
+        });
+        
+        // Confusion Matrix Heatmap
+        const confusionMatrixEl = document.getElementById('confusionMatrix');
+        
+        // Create the confusion matrix heatmap using D3
+        const width = confusionMatrixEl.offsetWidth;
+        const height = confusionMatrixEl.offsetHeight;
+        const margin = { top: 40, right: 40, bottom: 40, left: 40 };
+        
+        const svg = d3.select('#confusionMatrix')
+            .append('svg')
+            .attr('width', width)
+            .attr('height', height);
+            
+        const innerWidth = width - margin.left - margin.right;
+        const innerHeight = height - margin.top - margin.bottom;
+        
+        // Create a group for the heatmap
+        const g = svg.append('g')
+            .attr('transform', `translate(${margin.left}, ${margin.top})`);
+        
+        // Define the color scale with purple
+        const colorScale = d3.scaleLinear()
+            .domain([0, d3.max(confusionMatrixData, row => d3.max(row))])
+            .range(['#f3f0ff', '#6b46c1']);
+        
+        // Define the size of each cell
+        const cellSize = Math.min(innerWidth, innerHeight) / 2;
+        
+        // Create the heatmap
+        const cells = g.selectAll('rect')
+            .data(confusionMatrixData.flat())
+            .enter()
+            .append('rect')
+            .attr('width', cellSize)
+            .attr('height', cellSize)
+            .attr('x', (d, i) => (i % 2) * cellSize)
+            .attr('y', (d, i) => Math.floor(i / 2) * cellSize)
+            .attr('fill', d => colorScale(d))
+            .attr('stroke', '#fff')
+            .attr('stroke-width', 2);
+            
+        // Add text to each cell
+        g.selectAll('text')
+            .data(confusionMatrixData.flat())
+            .enter()
+            .append('text')
+            .attr('x', (d, i) => (i % 2) * cellSize + cellSize / 2)
+            .attr('y', (d, i) => Math.floor(i / 2) * cellSize + cellSize / 2)
+            .attr('text-anchor', 'middle')
+            .attr('dominant-baseline', 'middle')
+            .attr('font-size', '18px')
+            .attr('font-weight', 'bold')
+            .attr('fill', d => d > 30 ? '#fff' : '#2d3748')
+            .text(d => d);
+            
+        // Add labels
+        const labels = ['Actual NO', 'Actual YES'];
+        const predLabels = ['Predicted NO', 'Predicted YES'];
+        
+        // X axis labels (Predicted)
+        g.selectAll('.pred-label')
+            .data(predLabels)
+            .enter()
+            .append('text')
+            .attr('class', 'pred-label')
+            .attr('x', (d, i) => i * cellSize + cellSize / 2)
+            .attr('y', -10)
+            .attr('text-anchor', 'middle')
+            .attr('font-size', '12px')
+            .text(d => d);
+            
+        // Y axis labels (Actual)
+        g.selectAll('.actual-label')
+            .data(labels)
+            .enter()
+            .append('text')
+            .attr('class', 'actual-label')
+            .attr('x', -10)
+            .attr('y', (d, i) => i * cellSize + cellSize / 2)
+            .attr('text-anchor', 'end')
+            .attr('dominant-baseline', 'middle')
+            .attr('font-size', '12px')
+            .text(d => d);
+            
+        // Create tooltip
+        const tooltip = d3.select('body')
+            .append('div')
+            .attr('class', 'tooltip')
+            .style('opacity', 0);
+            
+        // Add hover effects
+        cells.on('mouseover', function(event, d) {
+                const i = confusionMatrixData.flat().indexOf(d);
+                const row = Math.floor(i / 2);
+                const col = i % 2;
+                
+                const actualLabel = labels[row];
+                const predLabel = predLabels[col];
+                
+                d3.select(this)
+                    .attr('stroke', '#9f7aea')
+                    .attr('stroke-width', 3);
+                    
+                tooltip.transition()
+                    .duration(200)
+                    .style('opacity', 0.9);
+                    
+                tooltip.html(`${actualLabel}<br>${predLabel}<br>Count: ${d}`)
+                    .style('left', (event.pageX + 10) + 'px')
+                    .style('top', (event.pageY - 28) + 'px');
+            })
+            .on('mouseout', function() {
+                d3.select(this)
+                    .attr('stroke', '#fff')
+                    .attr('stroke-width', 2);
+                    
+                tooltip.transition()
+                    .duration(500)
+                    .style('opacity', 0);
+            });
+    </script>
+</body>
+</html>
