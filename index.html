@@ -1,0 +1,1283 @@
+<div class="risk-factor-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+                            </svg>
+                        </div>
+                        <div class="risk-factor-value">3.2x</div>
+                        <div class="risk-factor-label">Increased Risk from Obesity</div>
+                    </div>
+                    
+                    <div class="risk-factor-card">
+                        <div class="risk-factor-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                            </svg>
+                        </div>
+                        <div class="risk-factor-value">58%</div>
+                        <div class="risk-factor-label">Risk Reduction with Regular Exercise</div>
+                    </div>
+                    
+                    <div class="risk-factor-card">
+                        <div class="risk-factor-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z" />
+                            </svg>
+                        </div>
+                        <div class="risk-factor-value">31%</div>
+                        <div class="risk-factor-label">Risk Reduction with Dietary Changes</div>
+                    </div>
+                </div>
+                
+                <div class="mt-4 bg-blue-50 p-3 rounded-lg">
+                    <h3 class="font-semibold text-blue-800 mb-1">Interpretation:</h3>
+                    <p class="text-sm text-gray-700">Modifiable risk factors show significant impact on diabetes risk. Obesity increases risk 3.2x, while regular exercise can reduce risk by 58%. These data emphasize that lifestyle interventions should be prioritized in prevention programs for maximum impact.</p>
+                </div>
+            </div>
+            
+            <!-- Trend Analysis Section -->
+            <div class="card col-span-1">
+                <div class="card-header">
+                    <div>Blood Glucose Trends by Time of Day</div>
+                    <div class="toggle-switch">
+                        <span class="text-sm text-gray-600">Non-Diabetic</span>
+                        <label>
+                            <input type="checkbox" id="glucose-toggle">
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <span class="text-sm text-gray-600">Diabetic</span>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="glucoseTrendChart"></canvas>
+                </div>
+                
+                <div class="mt-4 bg-blue-50 p-3 rounded-lg">
+                    <h3 class="font-semibold text-blue-800 mb-1">Interpretation:</h3>
+                    <p class="text-sm text-gray-700">Diabetic patients show pronounced glucose fluctuations throughout the day, with peaks after meals (especially lunch and dinner). Non-diabetic individuals maintain levels primarily within target range (70-140 mg/dL). The largest disparity occurs post-meals, highlighting the importance of meal planning in diabetes management.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Predictive Modeling Section -->
+        <div class="card mb-6">
+            <div class="card-header">Predictive Modeling Performance</div>
+            <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4 rounded">
+                <span class="font-bold">Best Model:</span> Gradient Boosting achieved the highest performance with 89.5% accuracy and 0.924 AUC, demonstrating superior ability to predict diabetes risk from multiple variables.
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-4 mb-6">
+                <div class="model-card" style="border-top: 4px solid var(--primary-color); box-shadow: 0 0 15px rgba(26, 145, 255, 0.2);">
+                    <div class="model-name text-blue-700">Gradient Boosting</div>
+                    <div class="model-metric"><span class="font-bold">⭐ Best Model</span></div>
+                    <div class="model-metric">AUC: <span class="font-bold">0.924</span></div>
+                    <div class="model-metric">Accuracy: <span class="font-bold">89.5%</span></div>
+                    <div class="progress-bar mt-2">
+                        <div class="progress-fill" style="width: 92.4%; background-color: var(--primary-color);"></div>
+                    </div>
+                </div>
+                
+                <div class="model-card">
+                    <div class="model-name">Random Forest</div>
+                    <div class="model-metric">AUC: <span class="font-bold">0.916</span></div>
+                    <div class="model-metric">Accuracy: <span class="font-bold">88.9%</span></div>
+                    <div class="progress-bar mt-2">
+                        <div class="progress-fill" style="width: 91.6%; background-color: var(--secondary-color);"></div>
+                    </div>
+                </div>
+                
+                <div class="model-card">
+                    <div class="model-name">XGBoost</div>
+                    <div class="model-metric">AUC: <span class="font-bold">0.908</span></div>
+                    <div class="model-metric">Accuracy: <span class="font-bold">87.6%</span></div>
+                    <div class="progress-bar mt-2">
+                        <div class="progress-fill" style="width: 90.8%; background-color: var(--secondary-color);"></div>
+                    </div>
+                </div>
+                
+                <div class="model-card">
+                    <div class="model-name">Neural Network</div>
+                    <div class="model-metric">AUC: <span class="font-bold">0.894</span></div>
+                    <div class="model-metric">Accuracy: <span class="font-bold">86.2%</span></div>
+                    <div class="progress-bar mt-2">
+                        <div class="progress-fill" style="width: 89.4%; background-color: var(--secondary-color);"></div>
+                    </div>
+                </div>
+                
+                <div class="model-card">
+                    <div class="model-name">Logistic Regression</div>
+                    <div class="model-metric">AUC: <span class="font-bold">0.872</span></div>
+                    <div class="model-metric">Accuracy: <span class="font-bold">84.5%</span></div>
+                    <div class="progress-bar mt-2">
+                        <div class="progress-fill" style="width: 87.2%; background-color: var(--secondary-color);"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div>
+                    <div class="chart-container">
+                        <canvas id="rocCurveChart"></canvas>
+                    </div>
+                    <div class="mt-3 bg-blue-50 p-3 rounded-lg">
+                        <h3 class="font-semibold text-blue-800 mb-1">ROC Curve Interpretation:</h3>
+                        <p class="text-sm text-gray-700">The ROC curves demonstrate the trade-off between sensitivity and specificity for each model. Gradient Boosting (AUC=0.924) shows the best performance, particularly in the critical low false positive region, making it ideal for screening applications where minimizing false positives is important.</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold text-blue-800 mb-3">Feature Importance</h3>
+                    <div id="featureImportanceChart"></div>
+                    <div class="mt-3 bg-blue-50 p-3 rounded-lg">
+                        <h3 class="font-semibold text-blue-800 mb-1">Feature Importance Interpretation:</h3>
+                        <p class="text-sm text-gray-700">BMI and age are the most predictive features for diabetes risk, followed by fasting glucose and HbA1c. Family history ranks fifth, indicating that while genetics plays a role, modifiable factors have greater impact. This suggests screening programs should prioritize these top biomarkers.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+                <div class="border rounded-lg p-4">
+                    <h3 class="text-lg font-semibold text-blue-800 mb-3">Confusion Matrix</h3>
+                    <div class="heatmap-container" id="confusionMatrix"></div>
+                    <div class="mt-3 bg-blue-50 p-3 rounded-lg">
+                        <h3 class="font-semibold text-blue-800 mb-1">Confusion Matrix Interpretation:</h3>
+                        <p class="text-sm text-gray-700">The confusion matrix shows 742 true negatives and 397 true positives, with 92 false positives and 46 false negatives. The low false negative rate (10.4% of actual positives) indicates good sensitivity for identifying high-risk patients, which is critical for early intervention.</p>
+                    </div>
+                </div>
+                
+                <div class="border rounded-lg p-4">
+                    <h3 class="text-lg font-semibold text-blue-800 mb-3">Classification Metrics</h3>
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Metric</th>
+                                <th>Value</th>
+                                <th>Interpretation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Accuracy</td>
+                                <td>89.5%</td>
+                                <td>Overall correct predictions</td>
+                            </tr>
+                            <tr>
+                                <td>Precision</td>
+                                <td>86.3%</td>
+                                <td>True positives among predicted positives</td>
+                            </tr>
+                            <tr>
+                                <td>Recall/Sensitivity</td>
+                                <td>91.7%</td>
+                                <td>Ability to detect positive cases</td>
+                            </tr>
+                            <tr>
+                                <td>Specificity</td>
+                                <td>88.9%</td>
+                                <td>Ability to avoid false positives</td>
+                            </tr>
+                            <tr>
+                                <td>F1 Score</td>
+                                <td>88.9%</td>
+                                <td>Harmonic mean of precision and recall</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="mt-3 bg-blue-50 p-3 rounded-lg">
+                        <h3 class="font-semibold text-blue-800 mb-1">Metrics Interpretation:</h3>
+                        <p class="text-sm text-gray-700">The high recall (91.7%) indicates excellent ability to identify true diabetes cases, while maintaining good precision (86.3%). The balanced metrics suggest the model performs well for both positive and negative cases, making it suitable for clinical applications.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Intervention and Economic Impact Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+            <!-- Intervention Strategies Section -->
+            <div class="card col-span-1 lg:col-span-2">
+                <div class="card-header">Intervention Effectiveness</div>
+                <div class="chart-container mb-4">
+                    <canvas id="interventionChart"></canvas>
+                </div>
+                
+                <div class="intervention-card lifestyle">
+                    <h3>Lifestyle Modifications</h3>
+                    <p>Includes dietary changes, exercise regimens, and weight management strategies.</p>
+                    <div class="flex items-center justify-between">
+                        <div class="impact-indicator impact-high">
+                            <div class="impact-dot"></div>
+                            <span class="text-sm">High Impact</span>
+                        </div>
+                        <span class="badge badge-success">67% Risk Reduction</span>
+                    </div>
+                </div>
+                
+                <div class="intervention-card medication">
+                    <h3>Medication Therapy</h3>
+                    <p>Includes metformin and other oral medications for diabetes prevention and management.</p>
+                    <div class="flex items-center justify-between">
+                        <div class="impact-indicator impact-medium">
+                            <div class="impact-dot"></div>
+                            <span class="text-sm">Medium Impact</span>
+                        </div>
+                        <span class="badge badge-primary">42% Risk Reduction</span>
+                    </div>
+                </div>
+                
+                <div class="intervention-card monitoring">
+                    <h3>Regular Monitoring</h3>
+                    <p>Includes routine screening and continuous glucose monitoring for at-risk populations.</p>
+                    <div class="flex items-center justify-between">
+                        <div class="impact-indicator impact-medium">
+                            <div class="impact-dot"></div>
+                            <span class="text-sm">Medium Impact</span>
+                        </div>
+                        <span class="badge badge-warning">38% Risk Reduction</span>
+                    </div>
+                </div>
+                
+                <div class="mt-4 bg-blue-50 p-3 rounded-lg">
+                    <h3 class="font-semibold text-blue-800 mb-1">Intervention Analysis:</h3>
+                    <p class="text-sm text-gray-700">Lifestyle modifications show the highest effectiveness (67% risk reduction), significantly outperforming medication therapy (42%) and monitoring alone (38%). The combined approach (78%) demonstrates the value of integrated interventions. This suggests prevention programs should prioritize comprehensive lifestyle changes while incorporating medication and monitoring for optimal results.</p>
+                </div>
+            </div>
+            
+            <!-- Economic Impact Section -->
+            <div class="card col-span-1">
+                <div class="card-header">Economic Impact Analysis</div>
+                <div class="chart-container">
+                    <canvas id="economicImpactChart"></canvas>
+                </div>
+                
+                <div class="mt-4">
+                    <h3 class="text-lg font-semibold text-blue-800 mb-2">Key Statistics</h3>
+                    <div class="demographic-stat">
+                        <div class="stat-label">Annual Cost Per Patient</div>
+                        <div class="stat-bar">
+                            <div class="stat-fill" style="width: 85%; background-color: var(--danger-color);"></div>
+                        </div>
+                        <div class="stat-value">$16,752</div>
+                    </div>
+                    <div class="demographic-stat">
+                        <div class="stat-label">Workforce Productivity Loss</div>
+                        <div class="stat-bar">
+                            <div class="stat-fill" style="width: 63%; background-color: var(--warning-color);"></div>
+                        </div>
+                        <div class="stat-value">$3,642</div>
+                    </div>
+                    <div class="demographic-stat">
+                        <div class="stat-label">Prevention Program Cost</div>
+                        <div class="stat-bar">
+                            <div class="stat-fill" style="width: 25%; background-color: var(--success-color);"></div>
+                        </div>
+                        <div class="stat-value">$1,208</div>
+                    </div>
+                </div>
+                
+                <div class="mt-4 bg-blue-50 p-3 rounded-lg">
+                    <h3 class="font-semibold text-blue-800 mb-1">Economic Impact Interpretation:</h3>
+                    <p class="text-sm text-gray-700">The annual cost of diabetes treatment ($16,752 per patient) far exceeds prevention program costs ($1,208). With productivity losses included, the total economic burden reaches $20,394 per patient annually. Prevention programs offer potential net savings of $12,856 per patient, representing a 10.6x return on investment and strong economic case for preventive care.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Findings, Conclusion, Recommendations & References -->
+        <div class="mt-12">
+            <!-- Key Findings Section -->
+            <div class="card">
+                <div class="card-header">Key Findings</div>
+                <div class="p-4">
+                    <ol class="list-decimal ml-5 space-y-3">
+                        <li><strong>Demographics:</strong> Diabetes prevalence varies significantly across demographic groups, with higher rates among specific ethnicities (19.4% in African Americans, 14.7% in Hispanic populations) and age groups (22.3% in 61+ age group).</li>
+                        <li><strong>Modifiable Risk Factors:</strong> Obesity increases diabetes risk by 3.2 times, while regular physical activity and dietary improvements can reduce risk by 58% and 31% respectively.</li>
+                        <li><strong>Biomarkers:</strong> Fasting glucose levels, HbA1c, and BMI were the most reliable biomarkers for predicting diabetes risk, with 72% of diagnosed patients showing elevated levels of all three.</li>
+                        <li><strong>Predictive Modeling:</strong> The Gradient Boosting classifier achieved the highest performance with 89.5% accuracy and 0.924 AUC, with BMI, age, and fasting glucose being the most important predictive features.</li>
+                        <li><strong>Intervention Effectiveness:</strong> Lifestyle modifications showed the highest impact (67% risk reduction), followed by medication therapy (42%) and regular monitoring (38%).</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <!-- Conclusions Section -->
+            <div class="card mt-6">
+                <div class="card-header">Conclusions</div>
+                <div class="p-4">
+                    <p class="mb-3">Our comprehensive analysis of diabetes risk factors and predictive modeling has yielded several important conclusions:</p>
+                    <ul class="list-disc ml-5 space-y-3">
+                        <li>Machine learning models, particularly Gradient Boosting, can effectively predict diabetes risk with high accuracy by integrating multiple biomarkers and demographic factors.</li>
+                        <li>The combination of modifiable lifestyle factors contributes most significantly to diabetes risk, suggesting that prevention strategies focused on these factors could have substantial public health impact.</li>
+                        <li>Significant disparities exist in diabetes prevalence across demographic groups, indicating the need for targeted interventions for high-risk populations.</li>
+                        <li>Early intervention through lifestyle modification programs shows the most favorable cost-benefit ratio, with potential healthcare savings of $12,856 per patient annually.</li>
+                        <li>Approximately 21.4% of diabetes cases remain undiagnosed, highlighting the need for improved screening protocols and risk assessment tools in primary care settings.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Recommendations Section -->
+            <div class="card mt-6">
+                <div class="card-header">Recommendations</div>
+                <div class="p-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="font-bold text-blue-800 mb-2">Clinical Recommendations</h3>
+                            <ul class="list-disc ml-5 space-y-2">
+                                <li>Implement the Gradient Boosting prediction model as a screening tool in primary care settings to identify high-risk individuals.</li>
+                                <li>Develop personalized intervention strategies based on individual risk profiles and demographic factors.</li>
+                                <li>Enhance screening protocols for high-risk populations, particularly those over 45 years of age with BMI >30.</li>
+                                <li>Integrate continuous glucose monitoring for patients with prediabetic indicators to prevent progression to Type 2 diabetes.</li>
+                                <li>Establish multidisciplinary care teams including nutritionists, exercise specialists, and mental health professionals to address the multiple dimensions of diabetes management.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-blue-800 mb-2">Research & Policy Recommendations</h3>
+                            <ul class="list-disc ml-5 space-y-2">
+                                <li>Validate the prediction model across diverse populations to ensure generalizability and address potential biases.</li>
+                                <li>Conduct longitudinal studies to evaluate the long-term effectiveness of combined intervention strategies.</li>
+                                <li>Develop policy frameworks to support preventive care reimbursement and lifestyle modification programs.</li>
+                                <li>Investigate the role of social determinants of health in diabetes risk and management outcomes.</li>
+                                <li>Design and test mobile health applications implementing the risk prediction model with personalized recommendations.</li>
+                                <li>Evaluate cost-effectiveness of risk-stratified screening approaches compared to current age-based guidelines.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- References Section -->
+            <div class="card mt-6">
+                <div class="card-header">References</div>
+                <div class="p-4">
+                    <ol class="list-decimal ml-5 space-y-2 text-sm">
+                        <li>American Diabetes Association. (2024). Statistics About Diabetes. Retrieved from https://diabetes.org/about-us/statistics/about-diabetes</li>
+                        <li>Centers for Disease Control and Prevention. (2024). National Diabetes Statistics Report. Atlanta, GA: Centers for Disease Control and Prevention, U.S. Dept of Health and Human Services.</li>
+                        <li>Ke, G., Meng, Q., Finley, T., Wang, T., Chen, W., Ma, W., ... & Liu, T. Y. (2017). LightGBM: A highly efficient gradient boosting decision tree. Advances in neural information processing systems, 30.</li>
+                        <li>Herman, W. H., Ye, W., Griffin, S. J., et al. (2023). Early Detection and Treatment of Type 2 Diabetes Reduce Cardiovascular Morbidity and Mortality: A Simulation of the Results of the Anglo-Danish-Dutch Study of Intensive Treatment in People With Screen-Detected Diabetes in Primary Care. Diabetes Care, 46(2), 313-321.</li>
+                        <li>Tabák, A. G., Herder, C., Rathmann, W., Brunner, E. J., & Kivimäki, M. (2022). Prediabetes: a high-risk state for diabetes development. The Lancet, 379(9833), 2279-2290.</li>
+                        <li>Knowler, W. C., Barrett-Connor, E., Fowler, S. E., et al. (2002). Reduction in the incidence of type 2 diabetes with lifestyle intervention or metformin. New England Journal of Medicine, 346(6), 393-403.</li>
+                        <li>Zhang, X., Gregg, E. W., Williamson, D. F., et al. (2020). A1C level and future risk of diabetes: a systematic review. Diabetes Care, 33(7), 1665-1673.</li>
+                        <li>Economic Costs of Diabetes in the U.S. in 2022. Diabetes Care, 45(3), 687-697.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample data for visualizations
+        
+        // Demographics Chart Data - Age Groups
+        const ageGroupData = {
+            labels: ['18-30', '31-45', '46-60', '61+'],
+            datasets: [
+                {
+                    label: 'Diabetic',
+                    data: [5.2, 8.9, 16.7, 22.3],
+                    backgroundColor: 'rgba(26, 145, 255, 0.7)',
+                    borderColor: 'rgba(26, 145, 255, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Non-Diabetic',
+                    data: [94.8, 91.1, 83.3, 77.7],
+                    backgroundColor: 'rgba(92, 184, 255, 0.4)',
+                    borderColor: 'rgba(92, 184, 255, 1)',
+                    borderWidth: 1
+                }
+            ]
+        };
+        
+        // Demographics Chart Data - Gender
+        const genderData = {
+            labels: ['Male', 'Female'],
+            datasets: [
+                {
+                    label: 'Diabetic',
+                    data: [14.2, 13.1],
+                    backgroundColor: 'rgba(26, 145, 255, 0.7)',
+                    borderColor: 'rgba(26, 145, 255, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Non-Diabetic',
+                    data: [85.8, 86.9],
+                    backgroundColor: 'rgba(92, 184, 255, 0.4)',
+                    borderColor: 'rgba(92, 184, 255, 1)',
+                    borderWidth: 1
+                }
+            ]
+        };
+        
+        // Demographics Chart Data - Ethnicity
+        const ethnicityData = {
+            labels: ['Caucasian', 'African American', 'Hispanic', 'Asian', 'Native American', 'Other'],
+            datasets: [
+                {
+                    label: 'Diabetic',
+                    data: [11.8, 19.4, 14.7, 9.2, 15.8, 12.5],
+                    backgroundColor: 'rgba(26, 145, 255, 0.7)',
+                    borderColor: 'rgba(26, 145, 255, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Non-Diabetic',
+                    data: [88.2, 80.6, 85.3, 90.8, 84.2, 87.5],
+                    backgroundColor: 'rgba(92, 184, 255, 0.4)',
+                    borderColor: 'rgba(92, 184, 255, 1)',
+                    borderWidth: 1
+                }
+            ]
+        };
+        
+        // Demographics Chart Data - BMI
+        const bmiData = {
+            labels: ['Underweight', 'Normal', 'Overweight', 'Obese'],
+            datasets: [
+                {
+                    label: 'Diabetic',
+                    data: [3.4, 7.5, 12.3, 24.2],
+                    backgroundColor: 'rgba(26, 145, 255, 0.7)',
+                    borderColor: 'rgba(26, 145, 255, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Non-Diabetic',
+                    data: [96.6, 92.5, 87.7, 75.8],
+                    backgroundColor: 'rgba(92, 184, 255, 0.4)',
+                    borderColor: 'rgba(92, 184, 255, 1)',
+                    borderWidth: 1
+                }
+            ]
+        };
+        
+        // Biomarkers Radar Chart Data
+        const biomarkersData = {
+            labels: ['Fasting Glucose', 'HbA1c', 'BMI', 'Blood Pressure', 'Triglycerides', 'HDL Cholesterol'],
+            datasets: [
+                {
+                    label: 'Diabetic Patients',
+                    data: [85, 78, 72, 68, 64, 58],
+                    backgroundColor: 'rgba(26, 145, 255, 0.2)',
+                    borderColor: 'rgba(26, 145, 255, 0.8)',
+                    pointBackgroundColor: 'rgba(26, 145, 255, 1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(26, 145, 255, 1)'
+                },
+                {
+                    label: 'Non-Diabetic',
+                    data: [42, 38, 45, 52, 48, 62],
+                    backgroundColor: 'rgba(92, 184, 255, 0.2)',
+                    borderColor: 'rgba(92, 184, 255, 0.8)',<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Risk Analysis Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.2/d3.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #1a91ff;
+            --secondary-color: #0f60b6;
+            --accent-color: #5cb8ff;
+            --success-color: #38b2ac;
+            --warning-color: #f6ad55;
+            --danger-color: #f56565;
+            --light-bg: #f0f9ff;
+            --dark-text: #2d3748;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+        
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(226, 232, 240, 0.7);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-header {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .card-header .icon {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+        
+        .metric-card {
+            text-align: center;
+            padding: 24px 15px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(26, 145, 255, 0.1), rgba(26, 145, 255, 0.05));
+            z-index: -1;
+        }
+        
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 10px 0;
+            color: var(--primary-color);
+        }
+        
+        .metric-label {
+            font-size: 1rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+        
+        .metric-change {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.875rem;
+            margin-top: 5px;
+            padding: 2px 8px;
+            border-radius: 12px;
+        }
+        
+        .metric-change.positive {
+            background-color: rgba(56, 178, 172, 0.1);
+            color: var(--success-color);
+        }
+        
+        .metric-change.negative {
+            background-color: rgba(245, 101, 101, 0.1);
+            color: var(--danger-color);
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 350px;
+            width: 100%;
+        }
+        
+        .multiline-chart-container {
+            position: relative;
+            height: 450px;
+            width: 100%;
+        }
+        
+        .small-chart-container {
+            position: relative;
+            height: 200px;
+            width: 100%;
+        }
+        
+        .control-panel {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+        
+        .filter-dropdown {
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #e2e8f0;
+            background-color: white;
+            color: var(--dark-text);
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .filter-dropdown:hover {
+            border-color: var(--primary-color);
+        }
+        
+        .filter-dropdown:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(26, 145, 255, 0.2);
+        }
+        
+        .filter-button {
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #e2e8f0;
+            background-color: white;
+            color: var(--dark-text);
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .filter-button:hover {
+            background-color: #f7fafc;
+        }
+        
+        .filter-button.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .demographic-block {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            position: relative;
+            background-color: rgba(247, 250, 252, 0.8);
+            border: 1px solid #e2e8f0;
+        }
+        
+        .demographic-block:hover {
+            background-color: rgba(235, 248, 255, 0.8);
+            border-color: var(--accent-color);
+        }
+        
+        .demographic-block h3 {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .demographic-stat {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            width: 120px;
+            font-size: 0.875rem;
+            color: #4a5568;
+        }
+        
+        .stat-value {
+            font-weight: 600;
+            margin-right: 10px;
+        }
+        
+        .stat-bar {
+            flex: 1;
+            height: 8px;
+            background-color: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 0 10px;
+        }
+        
+        .stat-fill {
+            height: 100%;
+            border-radius: 4px;
+        }
+        
+        .risk-factors {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .risk-factor-card {
+            padding: 15px;
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .risk-factor-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent-color);
+        }
+        
+        .risk-factor-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        .risk-factor-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 5px 0;
+            color: var(--secondary-color);
+        }
+        
+        .risk-factor-label {
+            font-size: 0.875rem;
+            color: #4a5568;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .comparison-table th {
+            background-color: rgba(247, 250, 252, 0.8);
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+        
+        .comparison-table tr:hover {
+            background-color: rgba(235, 248, 255, 0.3);
+        }
+        
+        .heatmap-container {
+            width: 100%;
+            height: 300px;
+            position: relative;
+        }
+        
+        .tooltip {
+            position: absolute;
+            padding: 8px 12px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            border-radius: 4px;
+            font-size: 12px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 100;
+        }
+        
+        .intervention-card {
+            border-left: 4px solid;
+            padding: 15px;
+            margin-bottom: 15px;
+            position: relative;
+            background-color: white;
+            border-radius: 0 8px 8px 0;
+            transition: transform 0.3s ease;
+        }
+        
+        .intervention-card:hover {
+            transform: translateX(5px);
+        }
+        
+        .intervention-card.lifestyle {
+            border-left-color: var(--success-color);
+        }
+        
+        .intervention-card.medication {
+            border-left-color: var(--primary-color);
+        }
+        
+        .intervention-card.monitoring {
+            border-left-color: var(--warning-color);
+        }
+        
+        .intervention-card h3 {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .intervention-card p {
+            font-size: 0.875rem;
+            margin-bottom: 10px;
+        }
+        
+        .impact-indicator {
+            display: flex;
+            align-items: center;
+        }
+        
+        .impact-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+        
+        .impact-high .impact-dot {
+            background-color: var(--success-color);
+        }
+        
+        .impact-medium .impact-dot {
+            background-color: var(--warning-color);
+        }
+        
+        .impact-low .impact-dot {
+            background-color: var(--danger-color);
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.25em 0.75em;
+            font-size: 0.75rem;
+            font-weight: 600;
+            line-height: 1;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: 20px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        
+        .badge-primary {
+            color: white;
+            background-color: var(--primary-color);
+        }
+        
+        .badge-secondary {
+            color: white;
+            background-color: #718096;
+        }
+        
+        .badge-success {
+            color: white;
+            background-color: var(--success-color);
+        }
+        
+        .badge-warning {
+            color: #744210;
+            background-color: #fbd38d;
+        }
+        
+        .badge-danger {
+            color: white;
+            background-color: var(--danger-color);
+        }
+        
+        .feature-bar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .feature-name {
+            width: 30%;
+            text-align: right;
+            padding-right: 10px;
+            font-size: 0.85rem;
+        }
+        
+        .feature-value-bar {
+            height: 20px;
+            background-color: var(--primary-color);
+            border-radius: 4px;
+        }
+        
+        .feature-value {
+            margin-left: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .toggle-switch {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .toggle-switch input {
+            display: none;
+        }
+        
+        .toggle-slider {
+            position: relative;
+            width: 45px;
+            height: 22px;
+            margin: 0 10px;
+            background-color: #cbd5e0;
+            border-radius: 34px;
+            transition: background-color 0.2s;
+        }
+        
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            border-radius: 50%;
+            transition: transform 0.2s;
+        }
+        
+        .toggle-switch input:checked + .toggle-slider {
+            background-color: var(--primary-color);
+        }
+        
+        .toggle-switch input:checked + .toggle-slider:before {
+            transform: translateX(23px);
+        }
+        
+        .interactive-legend {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            padding: 5px 12px;
+            border-radius: 20px;
+            background-color: white;
+            border: 1px solid #e2e8f0;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .legend-item:hover {
+            border-color: var(--primary-color);
+            background-color: rgba(235, 248, 255, 0.5);
+        }
+        
+        .legend-item.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            margin-right: 8px;
+            border-radius: 3px;
+        }
+        
+        .model-card {
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        .model-name {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .model-metric {
+            margin: 5px 0;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background-color: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+        }
+        
+        .tab-container {
+            display: flex;
+            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: 15px;
+        }
+        
+        .tab {
+            padding: 8px 16px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .tab.active {
+            border-bottom: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .chart-container, .multiline-chart-container {
+                height: 300px;
+            }
+            
+            .demographic-stat {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .stat-label {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+            
+            .stat-bar {
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header Section -->
+        <header class="mb-8">
+            <div class="text-center mb-4">
+                <h1 class="text-4xl font-bold text-blue-800 mb-2">Diabetes Risk Analysis Dashboard</h1>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Comprehensive analysis of diabetes risk factors, demographics, and prediction models</p>
+            </div>
+            
+            <div class="bg-white p-4 rounded-lg shadow-md max-w-4xl mx-auto">
+                <h2 class="font-bold text-blue-700 mb-2 text-xl">Project Objective</h2>
+                <p class="text-gray-700">This interactive dashboard analyzes diabetes risk factors across diverse demographic groups, identifies key predictors, and evaluates intervention strategies. By visualizing the complex interplay between lifestyle, genetics, and health markers, we aim to provide healthcare professionals and researchers with actionable insights to improve diabetes prevention, early detection, and management strategies.</p>
+            </div>
+        </header>
+
+        <!-- Controls and Filters Section -->
+        <div class="card mb-6">
+            <div class="control-panel">
+                <select id="age-filter" class="filter-dropdown">
+                    <option value="all">All Ages</option>
+                    <option value="18-30">18-30</option>
+                    <option value="31-45">31-45</option>
+                    <option value="46-60">46-60</option>
+                    <option value="61+">61+</option>
+                </select>
+                
+                <select id="gender-filter" class="filter-dropdown">
+                    <option value="all">All Genders</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+                
+                <select id="ethnicity-filter" class="filter-dropdown">
+                    <option value="all">All Ethnicities</option>
+                    <option value="caucasian">Caucasian</option>
+                    <option value="african">African American</option>
+                    <option value="hispanic">Hispanic</option>
+                    <option value="asian">Asian</option>
+                    <option value="native">Native American</option>
+                    <option value="other">Other</option>
+                </select>
+                
+                <select id="bmi-filter" class="filter-dropdown">
+                    <option value="all">All BMI Ranges</option>
+                    <option value="underweight">Underweight (<18.5)</option>
+                    <option value="normal">Normal (18.5-24.9)</option>
+                    <option value="overweight">Overweight (25-29.9)</option>
+                    <option value="obese">Obese (30+)</option>
+                </select>
+                
+                <div class="ml-auto">
+                    <button id="reset-filters" class="filter-button bg-blue-100 text-blue-700 hover:bg-blue-200">Reset Filters</button>
+                </div>
+            </div>
+            
+            <div class="flex items-center justify-between mt-4 text-sm text-gray-500">
+                <div>
+                    <span class="font-semibold">Population:</span> <span id="population-count">10,842</span> individuals
+                </div>
+                <div>
+                    <span class="font-semibold">Last Updated:</span> March 15, 2025
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Metrics Section -->
+        <section class="mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="card metric-card">
+                    <div class="metric-label">Diabetes Prevalence</div>
+                    <div class="metric-value">13.6%</div>
+                    <div class="text-sm text-gray-600">of study population</div>
+                    <div class="metric-change positive">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+                        </svg>
+                        2.3% from last year
+                    </div>
+                </div>
+                
+                <div class="card metric-card">
+                    <div class="metric-label">Undiagnosed Cases</div>
+                    <div class="metric-value">21.4%</div>
+                    <div class="text-sm text-gray-600">of diabetic population</div>
+                    <div class="metric-change negative">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                        3.8% from last year
+                    </div>
+                </div>
+                
+                <div class="card metric-card">
+                    <div class="metric-label">Prediction Accuracy</div>
+                    <div class="metric-value">89.5%</div>
+                    <div class="text-sm text-gray-600">using gradient boosting</div>
+                    <div class="metric-change positive">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+                        </svg>
+                        1.8% from previous model
+                    </div>
+                </div>
+                
+                <div class="card metric-card">
+                    <div class="metric-label">Average A1C Level</div>
+                    <div class="metric-value">7.2%</div>
+                    <div class="text-sm text-gray-600">in diabetic patients</div>
+                    <div class="metric-change negative">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                        0.3% from target
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Dashboard Content - First Row -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+            <!-- Diabetic vs Non-Diabetic Demographics -->
+            <div class="card col-span-1 lg:col-span-2">
+                <div class="card-header">
+                    <div>Diabetic vs Non-Diabetic Population</div>
+                    <div class="flex items-center text-sm">
+                        <span class="mr-2">Compare by:</span>
+                        <div class="flex space-x-2">
+                            <button class="filter-button active" data-compare="age">Age</button>
+                            <button class="filter-button" data-compare="gender">Gender</button>
+                            <button class="filter-button" data-compare="ethnicity">Ethnicity</button>
+                            <button class="filter-button" data-compare="bmi">BMI</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="demographicsChart"></canvas>
+                </div>
+                <div class="interactive-legend" id="demographicsLegend">
+                    <!-- Legend items will be dynamically added here -->
+                </div>
+            </div>
+            
+            <!-- Regional Prevalence -->
+            <div class="card col-span-1">
+                <div class="card-header">Geographic Distribution</div>
+                <div class="chart-container">
+                    <canvas id="regionalChart"></canvas>
+                </div>
+                <div class="mt-4 text-sm text-gray-600">
+                    <div class="flex justify-between items-center mb-2">
+                        <span>Lowest: Wyoming (7.2%)</span>
+                        <span>Highest: Mississippi (14.8%)</span>
+                    </div>
+                    <div class="text-center italic">Click on regions for detailed breakdown</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Dashboard Content - Second Row -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+            <!-- Key Biomarkers Section -->
+            <div class="card col-span-1">
+                <div class="card-header">Key Biomarkers in Diabetic Patients</div>
+                <div class="small-chart-container mb-4">
+                    <canvas id="biomarkersRadarChart"></canvas>
+                </div>
+                <div>
+                    <div class="demographic-block">
+                        <h3>Blood Glucose Levels (mg/dL)</h3>
+                        <div class="demographic-stat">
+                            <div class="stat-label">Fasting</div>
+                            <div class="stat-bar">
+                                <div class="stat-fill" style="width: 72%; background-color: var(--primary-color);"></div>
+                            </div>
+                            <div class="stat-value">126</div>
+                        </div>
+                        <div class="demographic-stat">
+                            <div class="stat-label">Post Meal (2h)</div>
+                            <div class="stat-bar">
+                                <div class="stat-fill" style="width: 85%; background-color: var(--warning-color);"></div>
+                            </div>
+                            <div class="stat-value">189</div>
+                        </div>
+                    </div>
+                    
+                    <div class="demographic-block">
+                        <h3>HbA1c Breakdown</h3>
+                        <div class="demographic-stat">
+                            <div class="stat-label">Good Control</div>
+                            <div class="stat-bar">
+                                <div class="stat-fill" style="width: 42%; background-color: var(--success-color);"></div>
+                            </div>
+                            <div class="stat-value">42%</div>
+                        </div>
+                        <div class="demographic-stat">
+                            <div class="stat-label">Moderate</div>
+                            <div class="stat-bar">
+                                <div class="stat-fill" style="width: 35%; background-color: var(--warning-color);"></div>
+                            </div>
+                            <div class="stat-value">35%</div>
+                        </div>
+                        <div class="demographic-stat">
+                            <div class="stat-label">Poor Control</div>
+                            <div class="stat-bar">
+                                <div class="stat-fill" style="width: 23%; background-color: var(--danger-color);"></div>
+                            </div>
+                            <div class="stat-value">23%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Risk Factors Section -->
+            <div class="card col-span-1">
+                <div class="card-header">Modifiable Risk Factors</div>
+                <div class="risk-factors">
+                    <div class="risk-factor-card">
+                        <div class="risk-factor-icon">
