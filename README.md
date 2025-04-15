@@ -50,7 +50,7 @@ Check the structure of the combined dataset by printing the first few rows.
 print(head(df))
 ```
 ### Step 8: Rename columns using rename
-Rename long column names to a standard naming convention. This varies by country. For this purpose of thei work, we are using Sierra Leone data dictionary to do the renaming.
+Rename long column names to a short and standard naming convention. This varies by country. For this purpose of this work, we are using Sierra Leone data dictionary to do the renaming.
 - #### Step 8.1: Rename the organisational units
 ```r
 df <- df %>%
@@ -133,7 +133,7 @@ Separate `periodname` (e.g. , "April 2023") into two columns:
 ```r
 df <- separate(df, col=periodname, into=c("month", "year"), sep = " ")
 ```
-### Step 10: Recode Month to numeric values using recode
+### Step 10: Recode month to numeric values
 ```r
 df$Month <- recode(df$Month, 
   "January" = "01",
@@ -150,7 +150,7 @@ df$Month <- recode(df$Month,
   "December" = "12"
 )
 ```
-### Step 11: Combine 'year' and 'month' into one column using unite
+### Step 11: Combine 'year' and 'month' into one column
 ```r
 df <- df %>%
   unite("Date", Year, Month, sep = "-", remove = FALSE)
