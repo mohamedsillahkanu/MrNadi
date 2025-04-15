@@ -5,7 +5,7 @@ Install packages that support data manipulation, reading and writing Excel files
 
 `tidyr`: Offers functions for reshaping and tidying data
 
-`writexl`: Enable writimg data to Excel files
+`writexl`: Enable writing data to Excel files
 
 `readxl`: Enables reading Excel files
 
