@@ -153,7 +153,7 @@ df$month <- recode(df$month,
   "December" = "12"
 )
 ```
-### Step 11: Combine 'year' and 'month' into one column
+### Step 11: Combine `year` and `month` into one column
 ```r
 df <- df %>%
   unite("Date", Year, Month, sep = "-", remove = FALSE)
@@ -163,14 +163,14 @@ df <- df %>%
 ```r
 df$allout <- rowSums(df[c("allout_u5", "allout_ov5")], na.rm = TRUE)
 ```
-- #### Step 12.2 Create the susp variable
+- #### Step 12.2 Create the `susp` variable
 ```r
 df$susp <- rowSums(df[c(
   "susp_u5_hf", "susp_5_14_hf", "susp_ov15_hf",
   "susp_u5_com", "susp_5_14_com", "susp_ov15_com"
 )], na.rm = TRUE)
 ```
-- #### Step 12.2 Create the test_hf variable
+- #### Step 12.2 Create the `test_hf` variable
 ```r
 df$test_hf <- rowSums(df[c(
   "test_neg_mic_u5_hf", "test_pos_mic_u5_hf",
@@ -181,7 +181,7 @@ df$test_hf <- rowSums(df[c(
   "tes_neg_rdt_ov15_hf", "tes_pos_rdt_ov15_hf"
 )], na.rm = TRUE)
 ```
-- #### Step 12.3 Create the test_com variable
+- #### Step 12.3 Create the `test_com` variable
 ```r
 df$test_com <- rowSums(df[c(
   "tes_neg_rdt_u5_com", "tes_pos_rdt_u5_com",
@@ -189,28 +189,28 @@ df$test_com <- rowSums(df[c(
   "tes_neg_rdt_ov15_com", "tes_pos_rdt_ov15_com"
 )], na.rm = TRUE)
 ```
-- #### Step 12.3 Create the test variable
+- #### Step 12.3 Create the `test` variable
 ```r
 df$test <- rowSums(df[c("test_hf", "test_com")], na.rm = TRUE)
 ```
-- #### Step 12.4 Create the conf_hf variable
+- #### Step 12.4 Create the `conf_hf` variable
 ```r
 df$conf_hf <- rowSums(df[c(
   "test_pos_mic_u5_hf", "test_pos_mic_5_14_hf", "test_pos_mic_ov15_hf",
   "tes_pos_rdt_u5_hf", "tes_pos_rdt_5_14_hf", "tes_pos_rdt_ov15_hf"
 )], na.rm = TRUE)
 ```
-- #### Step 12.5 Create the conf_com variable
+- #### Step 12.5 Create the `conf_com` variable
 ```r
 df$conf_com <- rowSums(df[c(
   "tes_pos_rdt_u5_com", "tes_pos_rdt_5_14_com", "tes_pos_rdt_ov15_com"
 )], na.rm = TRUE)
 ```
-- #### Step 12.6 Create the conf variable
+- #### Step 12.6 Create the `conf` variable
 ```r
 df$conf <- rowSums(df[c("conf_hf", "conf_com")], na.rm = TRUE)
 ```
-- #### Step 12.7 Create the maltreat_com variable
+- #### Step 12.7 Create the `maltreat_com` variable
 ```r
 df$maltreat_com <- rowSums(df[c(
   "maltreat_u24_u5_com", "maltreat_ov24_u5_com",
@@ -218,7 +218,7 @@ df$maltreat_com <- rowSums(df[c(
   "maltreat_u24_ov15_com", "maltreat_ov24_ov15_com"
 )], na.rm = TRUE)
 ```
-- #### Step 12.8 Create the maltreat_hf variable
+- #### Step 12.8 Create the `maltreat_hf` variable
 ```r
 df$maltreat_hf <- rowSums(df[c(
   "maltreat_u24_u5_hf", "maltreat_ov24_u5_hf",
@@ -226,27 +226,27 @@ df$maltreat_hf <- rowSums(df[c(
   "maltreat_u24_ov15_hf", "maltreat_ov24_ov15_hf"
 )], na.rm = TRUE)
 ```
-- #### Step 12.9 Create the maltreat variable
+- #### Step 12.9 Create the `maltreat` variable
 ```r
 df$maltreat <- rowSums(df[c("maltreat_hf", "maltreat_com")], na.rm = TRUE)
 ```
-- #### Step 12.10 Create the pres_com variable
+- #### Step 12.10 Create the `pres_com` variable
 ```r
 df$pres_com <- pmax(df$maltreat_com - df$conf_com, 0, na.rm = TRUE)
 ```
-  #### Step 12.11 Create the pres_hf variable
+  #### Step 12.11 Create the `pres_hf` variable
 ```r
 df$pres_hf <- pmax(df$maltreat_hf - df$conf_hf, 0, na.rm = TRUE)
 ```
-- #### Step 12.12 Create the pres variable
+- #### Step 12.12 Create the `pres` variable
 ```r
 df$pres <- rowSums(df[c("pres_com", "pres_hf")], na.rm = TRUE)
 ```
-- #### Step 12.13 Create the pres_com variable
+- #### Step 12.13 Create the `pres_com` variable
 ```r
 df$maladm <- rowSums(df[c("maladm_u5", "maladm_5_14", "maladm_ov15")], na.rm = TRUE)
 ```
-- #### Step 12.14 Create the pres_com variable
+- #### Step 12.14 Create the `pres_com` variable
 ```r
 df$maldth <- rowSums(df[c(
   "maldth_u5", "maldth_1_59m", "maldth_10_14", "maldth_5_9",
