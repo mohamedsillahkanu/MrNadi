@@ -34,20 +34,23 @@ Create a list of all Excel file paths in the working directory using a regular e
 ```r
 file_paths <- list.files(pattern = "\\.xlsx$", full.names = TRUE)
 ```
-### Step 5: Read the files to dataframes
+### Step 5: Read the files to data frames
 Use a loop to read each file into R and store all data frames in a list
 ```r
 data_files <- lapply(file_paths, read_excel)
 ```
-### Step 6: Combine into a single data frame using bind_rows
+### Step 6: Combine data frames
+Combine all data frames into one.
 ```r  
 df <- bind_rows(data_files)
 ```
-### Step 7: View the combined dataframe
+### Step 7: View combined data 
+Check the structure of the combined dataset by printing the first few rows.
 ```r
 print(head(df))
 ```
 ### Step 8: Rename columns using rename
+Rename long column names to a standard naming convention. This varies by country. For this purpose of thei work, we are using Sierra Leone data dictionary to do the renaming.
 - #### Step 8.1: Rename the organisational units
 ```r
 df <- df %>%
@@ -125,7 +128,8 @@ maltreat_u24_ov15_hf  = Malaria treated with ACT <24 hours 15+y_X,
 maltreat_ov24_ov15_hf = Malaria treated with ACT >24 hours 15+y_X
   )
 ```
-### Step 9: Split periodname into Year and Month usinf separate
+### Step 9: Split periodname into year and month
+Separate `periodname` (e.g. , "April 2023") into two columns:  
 ```r
 df <- separate(df, col=periodname, into=c("month", "year"), sep = " ")
 ```
