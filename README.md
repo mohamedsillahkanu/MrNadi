@@ -25,6 +25,7 @@ library(readxl)
 ```
 ### Step 3: Download the files and set working directory
 - #### Step 3.1: Download the files here
+  The file below is a zip file. Download and then extract. Copy that file path and paste in the next step.
   [routine data](https://github.com/ahadi-analytics/snt-data-files/raw/99c7f670f38e46d6e872c941e45e11dd68844d4b/Routine%20data.zip)
 - #### Step 3.2: Set the working directory
 Specify the folder location where the Excel files are stored so R can acess them easily. 
