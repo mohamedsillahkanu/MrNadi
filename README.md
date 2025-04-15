@@ -253,24 +253,24 @@ df$maldth <- rowSums(df[c(
   "maldth_5_14", "maldth_ov15", "maldth_fem_ov15", "maldth_mal_ov15"
 )], na.rm = TRUE)
 ```
-- ### Step 13: Agregrate the data monthly at adm3
+### Step 13: Agregrate the data monthly at adm3
 ```r
 monthly_adm2_data <- df %>%
   group_by(adm1, adm2, adm3, year, month, date) %>%
   summarise(across(-c(adm1, adm2, year, month), sum, na.rm = TRUE), .groups = "drop")
 ```
-- ### Step 14: Save the agrregated monthly data at adm3 level
+### Step 14: Save the agrregated monthly data at adm3 level
 ```r
 write_excel(monthly_adm2_data, "/output file path/aggregated_data_monthly_adm2_data.xlsx")
 write_csv(monthly_adm2_data, "/output file path/aggregated_data_monthly_adm2_data.xlsx")
 ```
-- ### Step 15: Aggregrate the data yearly at adm3 level
+### Step 15: Aggregrate the data yearly at adm3 level
 ```r
 monthly_adm2_data <- df %>%
   group_by(adm1, adm2, adm3, year) %>%
   summarise(across(-c(adm1, adm2, year, month), sum, na.rm = TRUE), .groups = "drop")
 ```
-- ### Step 16: Save the agreegated yearly data at adm3 level
+### Step 16: Save the agreegated yearly data at adm3 level
 ```r
 write_excel(yearly_adm2_data, "/output file path/aggregated_data_monthly_adm2_data.xlsx")
 write_csv(yearly_adm2_data, "/output file path/aggregated_data_monthly_adm2_data.xlsx")
