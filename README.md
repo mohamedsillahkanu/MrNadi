@@ -46,7 +46,7 @@ df <- df %>%
 #### Step 8.2 Rename outpatients visit variables
 ```r
 allout_u5   = OPD (New and follow-up curative) 0-59m_X,
-allout_ov5  = `OPD (New and follow-up curative) 5+y_X`,
+allout_ov5  = OPD (New and follow-up curative) 5+y_X,
 ```
 #### Step 8.3 Rename malaria admissions variables
 ```r
