@@ -206,7 +206,7 @@ df$conf_com <- rowSums(df[c(
   "tes_pos_rdt_u5_com", "tes_pos_rdt_5_14_com", "tes_pos_rdt_ov15_com"
 )], na.rm = TRUE)
 ```
-- #### Step 12.6 Create the conf_hf variable
+- #### Step 12.6 Create the conf variable
 ```r
 df$conf <- rowSums(df[c("conf_hf", "conf_com")], na.rm = TRUE)
 ```
