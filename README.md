@@ -1,5 +1,5 @@
 ### Step 1: Install packages
-Install packages that support data manipulation and reading or writing Excel files.
+Install packages that support data manipulation, reading and writing Excel files.
 
 `dplyr`: Provide tools for data manipulation
 
