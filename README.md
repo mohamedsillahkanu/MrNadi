@@ -33,7 +33,7 @@ df <- bind_rows(data_files)
 print(head(df))
 ```
 ### Step 8: Rename columns using rename
-#### Step 8.1 Rename the organisational units
+- #### Step 8.1 Rename the organisational units
 ```r
 df <- df %>%
   rename(
@@ -43,18 +43,18 @@ df <- df %>%
     adm3 = orgunitlevel4,
     hf   = organisationunitname,
 ```
-#### Step 8.2 Rename outpatients visit variables
+- #### Step 8.2 Rename outpatients visit variables
 ```r
 allout_u5   = OPD (New and follow-up curative) 0-59m_X,
 allout_ov5  = OPD (New and follow-up curative) 5+y_X,
 ```
-#### Step 8.3 Rename malaria admissions variables
+- #### Step 8.3 Rename malaria admissions variables
 ```r
 maladm_u5   = Admission - Child with malaria 0-59 months_X,
 maladm_5_14 = Admission - Child with malaria 5-14 years_X,
 maladm_ov15 = Admission - Malaria 15+ years_X,
 ```
-#### Step 8.4 Rename malaria deaths variables
+- #### Step 8.4 Rename malaria deaths variables
 ```r
 maldth_1_59m = Child death - Malaria 1-59m_X,
 maldth_10_14 = Child death - Malaria 10-14y_X,
@@ -65,7 +65,7 @@ maldth_u5   = Separation - Child with malaria 0-59 months_X Death,
 maldth_5_14 = Separation - Child with malaria 5-14 years_X Death,
 maldth_ov15 = Separation - Malaria 15+ years_X Death,
 ```
-#### Step 8.5 Rename suspected variables
+- #### Step 8.5 Rename suspected variables
 ```r
 susp_u5_hf     = Fever case - suspected Malaria 0-59m_X,
 susp_5_14_hf   = Fever case - suspected Malaria 5-14y_X`,
@@ -74,7 +74,7 @@ susp_u5_com    = Fever case in community (Suspected Malaria) 0-59m_X,
 susp_5_14_com  = Fever case in community (Suspected Malaria) 5-14y_X,
 susp_ov15_com  = Fever case in community (Suspected Malaria) 15+y_X,
 ```
-#### Step 8.6 Rename rdt test variables at community level
+- #### Step 8.6 Rename rdt test variables at community level
 ```r
 tes_neg_rdt_u5_com   = Fever case in community tested for Malaria (RDT) - Negative 0-59m_X,
 tes_pos_rdt_u5_com   = Fever case in community tested for Malaria (RDT) - Positive 0-59m_X,
@@ -82,7 +82,7 @@ tes_neg_rdt_5_14_com = Fever case in community tested for Malaria (RDT) - Negati
 tes_pos_rdt_5_14_com = Fever case in community tested for Malaria (RDT) - Positive 5-14y_X,
 tes_neg_rdt_ov15_com = Fever case in community tested for Malaria (RDT) - Negative 15+y_X,
 ```
-#### Step 8.6 Rename rdt test variables at health facility level
+- #### Step 8.6 Rename rdt test variables at health facility level
 ```r
 test_neg_mic_u5_hf   = Fever case tested for Malaria (Microscopy) - Negative 0-59m_X,
 test_pos_mic_u5_hf   = Fever case tested for Malaria (Microscopy) - Positive 0-59m_X,
@@ -91,7 +91,7 @@ test_pos_mic_5_14_hf = Fever case tested for Malaria (Microscopy) - Positive 5-1
 test_neg_mic_ov15_hf = Fever case tested for Malaria (Microscopy) - Negative 15+y_X,
 test_pos_mic_ov15_hf = Fever case tested for Malaria (Microscopy) - Positive 15+y_X,
 ```
-#### Step 8.7 Rename malaria treated variables at community facility level
+- #### Step 8.7 Rename malaria treated variables at community facility level
 ```r
 maltreat_u24_u5_com   = Malaria treated in community with ACT <24 hours 0-59m_X,
 maltreat_ov24_u5_com  = Malaria treated in community with ACT >24 hours 0-59m_X,
@@ -100,7 +100,7 @@ maltreat_ov24_5_14_com = Malaria treated in community with ACT >24 hours 5-14y_X
 maltreat_u24_ov15_com = Malaria treated in community with ACT <24 hours 15+y_X,
 maltreat_ov24_ov15_com = Malaria treated in community with ACT >24 hours 15+y_X,
 ```
-#### Step 8.9 Rename malaria treated variables at health facility level
+- #### Step 8.9 Rename malaria treated variables at health facility level
 ```r
 maltreat_u24_u5_hf    = Malaria treated with ACT <24 hours 0-59m_X,
 maltreat_ov24_u5_hf   = Malaria treated with ACT >24 hours 0-59m_X,
