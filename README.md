@@ -132,7 +132,7 @@ maltreat_ov24_ov15_hf = Malaria treated with ACT >24 hours 15+y_X
   )
 ```
 ### Step 9: Split periodname into year and month
-Separate `periodname` (e.g. , "April 2023") into two columns:  
+Separate `periodname` (e.g. , "April 2023") into two columns 
 ```r
 df <- separate(df, col=periodname, into=c("month", "year"), sep = " ")
 ```
