@@ -135,7 +135,7 @@ df <- separate(df, col=periodname, into=c("month", "year"), sep = " ")
 ```
 ### Step 10: Recode month to numeric values
 ```r
-df$Month <- recode(df$Month, 
+df$month <- recode(df$month, 
   "January" = "01",
   "February" = "02",
   "March" = "03",
