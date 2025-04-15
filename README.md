@@ -1,9 +1,14 @@
 ### Step 1: Install packages
 Install packages that support data manipulation and reading or writing Excel files.
+
 `dplyr`: Provide tools for data manipulation
+
 `tidyr`: Offers functions for reshaping and tidying data
+
 `writexl`: Enable writimg data to Excel files
+
 `readxl`: Enables reading Excel files
+
 ```r
 install.packages("dplyr")
 install.packages("tidyr")
