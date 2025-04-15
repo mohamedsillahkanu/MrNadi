@@ -94,8 +94,7 @@ df$month <- recode(df$month,
 df <- df %>%
   unite("Date", Year, Month, sep = "-", remove = FALSE)
 ```
-### Step 12: Create new variables using rowSums
-- #### Step 12.1 Create the allout variable
+### Step 12: Create new variables 
 ```r
 df$allout <- rowSums(df[c("allout_u5", "allout_ov5")], na.rm = TRUE)
 df$susp <- rowSums(df[c(
