@@ -31,13 +31,11 @@ setwd("path/to/your/directory")
 ```
 ### Step 4: Get list of Excel files
 Create a list of all Excel file paths in the working directory using a regular expression for `.xlsx`.
-- `pattern= "\\.xlsx$"` selects only `.xlsx` files
-  
-- `full.names = TRUE` returns full file paths
 ```r
 file_paths <- list.files(pattern = "\\.xlsx$", full.names = TRUE)
 ```
-### Step 5: Read the files to a dataframe using lapply
+### Step 5: Read the files to dataframes
+Use a loop to read each file into R and store all data frames in a list
 ```r
 data_files <- lapply(file_paths, read_excel)
 ```
