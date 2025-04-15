@@ -30,7 +30,7 @@ library(readxl)
 Specify the folder location where the Excel files are stored so R can acess them easily. 
 To adapt this code replace with actual file path
 ```r
-setwd("path/to/your/directory") 
+setwd("C:/Users/User/Downloads/routine data") 
 ```
 ### Step 4: Get list of Excel files
 Create a list of all Excel file paths in the working directory using a regular expression for `.xlsx`.
