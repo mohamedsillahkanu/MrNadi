@@ -15,18 +15,25 @@ install.packages("tidyr")
 install.packages("writexl")
 install.packages("readxl")
 ```
-### Step 2: Load the libraries
+### Step 2: Load packages
+Load the installed libraries to make their functions available in the current session.
 ```r
 library(dplyr)
 library(tidyr)
 library(writexl)
 library(readxl)
 ```
-### Step 3: Set working directory usinf setwd
+### Step 3: Set working directory
+Specify the folder location where the Excel files are stored so R can acess them easily. 
+To adapt this code replace with actual file path
 ```r
-setwd("path/to/your/directory")
+setwd("path/to/your/directory") 
 ```
-### Step 4: Get list of Excel files using list.files
+### Step 4: Get list of Excel files
+Create a list of all Excel file paths in the working directory using a regular expression for `.xlsx`.
+- `pattern= "\\.xlsx$"` selects only `.xlsx` files
+  
+- `full.names = TRUE` returns full file paths
 ```r
 file_paths <- list.files(pattern = "\\.xlsx$", full.names = TRUE)
 ```
