@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="O. Billa">
+<meta name="dcterms.date" content="2025-04-29">
+
+<title>Renforcer les preuves de performance du système de santé au Burkina Faso</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="Mortaly_Project_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Mortaly_Project_files/libs/quarto-html/quarto.js"></script>
+<script src="Mortaly_Project_files/libs/quarto-html/popper.min.js"></script>
+<script src="Mortaly_Project_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Mortaly_Project_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Mortaly_Project_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Mortaly_Project_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Mortaly_Project_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Mortaly_Project_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Mortaly_Project_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul class="collapse">
+  <li><a href="#objectif-du-projet" id="toc-objectif-du-projet" class="nav-link active" data-scroll-target="#objectif-du-projet">1. Objectif du projet</a>
+  <ul class="collapse">
+  <li><a href="#données-utilisées-pour-lestimation-de-la-mortalité-infantile" id="toc-données-utilisées-pour-lestimation-de-la-mortalité-infantile" class="nav-link" data-scroll-target="#données-utilisées-pour-lestimation-de-la-mortalité-infantile">2. Données utilisées pour l’estimation de la mortalité infantile</a></li>
+  <li><a href="#methodologie" id="toc-methodologie" class="nav-link" data-scroll-target="#methodologie">3. Methodologie</a></li>
+  <li><a href="#estimation-de-la-mortalite-par-la-methode-indirecte" id="toc-estimation-de-la-mortalite-par-la-methode-indirecte" class="nav-link" data-scroll-target="#estimation-de-la-mortalite-par-la-methode-indirecte">3.1. Estimation de la mortalite par la methode indirecte :</a></li>
+  <li><a href="#estimation-de-la-mortalite-par-la-methode-directe" id="toc-estimation-de-la-mortalite-par-la-methode-directe" class="nav-link" data-scroll-target="#estimation-de-la-mortalite-par-la-methode-directe">3.2. Estimation de la mortalite par la methode directe :</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><img src="images/Capture.JPG" class="img-fluid" width="495"></a></li>
+  <li><a href="#modelisation-de-la-tendance-par-regression-beta" id="toc-modelisation-de-la-tendance-par-regression-beta" class="nav-link" data-scroll-target="#modelisation-de-la-tendance-par-regression-beta">3.3. Modelisation de la tendance par regression beta :</a></li>
+  </ul></li>
+  <li><a href="#outpouts" id="toc-outpouts" class="nav-link" data-scroll-target="#outpouts">4. Outpouts</a>
+  <ul class="collapse">
+  <li><a href="#national" id="toc-national" class="nav-link" data-scroll-target="#national">4.1. National</a></li>
+  </ul></li>
+  <li><a href="#comparaison-courbes-tendance-lissee" id="toc-comparaison-courbes-tendance-lissee" class="nav-link" data-scroll-target="#comparaison-courbes-tendance-lissee">comparaison courbes tendance lissee <img src="comparaison_all_national.png" class="img-fluid"></a>
+  <ul class="collapse">
+  <li><a href="#estimation-regionale" id="toc-estimation-regionale" class="nav-link" data-scroll-target="#estimation-regionale">4.2. Estimation regionale</a></li>
+  <li><a href="#heatmap-des-differentes-region-va-venir-plus-bas-apres-la-desc-reg" id="toc-heatmap-des-differentes-region-va-venir-plus-bas-apres-la-desc-reg" class="nav-link" data-scroll-target="#heatmap-des-differentes-region-va-venir-plus-bas-apres-la-desc-reg">Heatmap des differentes region ( va venir plus bas apres la desc reg)</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Renforcer les preuves de performance du système de santé au Burkina Faso</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>O. Billa </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">April 29, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="objectif-du-projet" class="level1">
+<h1>1. Objectif du projet</h1>
+<p>Ce projet vise à produire des estimations fiables et actualisées de la mortalité des enfants de moins de 5 ans au Burkina Faso, en combinant différentes sources de données et méthodes d’estimation</p>
+<section id="données-utilisées-pour-lestimation-de-la-mortalité-infantile" class="level2">
+<h2 class="anchored" data-anchor-id="données-utilisées-pour-lestimation-de-la-mortalité-infantile">2. Données utilisées pour l’estimation de la mortalité infantile</h2>
+<p>Sources de données utilisées dans l’analyse de la mortalité au Burkina Faso</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Catégorie</strong></th>
+<th><strong>Source de données</strong></th>
+<th><strong>Années couvertes</strong></th>
+<th><strong>Méthode</strong></th>
+<th><strong>Couverture géographique</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Enquêtes</strong></td>
+<td>DHS</td>
+<td>2003, 2010, 2021</td>
+<td>Directe</td>
+<td>Nationale &amp; régionale</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>MICS</td>
+<td>2006</td>
+<td>Indirecte</td>
+<td>Nationale &amp; régionale</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>MIS</td>
+<td>2014, 2017</td>
+<td>Indirecte</td>
+<td>Nationale &amp; régionale</td>
+</tr>
+<tr class="even">
+<td><strong>Recensements</strong> <em>(en attente de données)</em></td>
+<td>Recensement général de la population</td>
+<td>2006, 2019</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="methodologie" class="level2">
+<h2 class="anchored" data-anchor-id="methodologie">3. Methodologie</h2>
+</section>
+<section id="estimation-de-la-mortalite-par-la-methode-indirecte" class="level2">
+<h2 class="anchored" data-anchor-id="estimation-de-la-mortalite-par-la-methode-indirecte">3.1. Estimation de la mortalite par la methode indirecte :</h2>
+<p>La méthode de Brass permet d’estimer la mortalité des enfants à partir de données sommaires de naissances (Summary Birth History – SBH). Elle repose sur l’utilisation de tables types de mortalité et de fécondité, et sur l’exploitation des réponses de femmes en âge de procréer (15–49 ans) concernant :</p>
+<ul>
+<li>le nombre total d’enfants nés (CEB : v201)<br>
+</li>
+<li>le nombre d’enfants encore en vie (v202)<br>
+</li>
+<li>la répartition des femmes par groupe d’âge (v013) ou selon la durée de mariage</li>
+</ul>
+<p>Ces informations permettent d’estimer la probabilité qu’un enfant meure avant un âge donné (noté <em>nq0</em>), pour différentes périodes antérieures à l’enquête.</p>
+<section id="hypothèses-de-la-méthode-de-brass" class="level3">
+<h3 class="anchored" data-anchor-id="hypothèses-de-la-méthode-de-brass">Hypothèses de la méthode de Brass</h3>
+<ul>
+<li>La fécondité et la mortalité suivent les schémas représentés dans des tables types.</li>
+<li>La mortalité des enfants est indépendante de la survie ou de la migration de leurs mères.</li>
+<li>La mortalité évolue progressivement et dans une seule direction au fil du temps.</li>
+<li>Le nombre moyen d’enfants jamais nés reflète les comportements de fécondité des cohortes passées.</li>
+</ul>
+</section>
+<section id="étapes-de-calcul" class="level3">
+<h3 class="anchored" data-anchor-id="étapes-de-calcul">3.1.1 Étapes de calcul</h3>
+<p><strong>Étape 1 – Proportion d’enfants décédés</strong><br>
+PDₓ = (CEB - CS) / CEB</p>
+<p><strong>Étape 2 – Parité moyenne</strong><br>
+Px = Σ(CEBᵢ) / Nx</p>
+<p><strong>Étape 3 – Choix de la table de mortalité</strong><br>
+(Coale-Demeny ou modèles ONU selon le contexte) : le modele Coale-Demeny Ouest est convenable au pays du sahel</p>
+<p><strong>Étape 4 – Âge moyen de maternité (m̄)</strong><br>
+Calculé à partir des taux de fécondité par âge (5fₓ)</p>
+<p><strong>Étape 5 – Probabilités de décès estimées</strong><br>
+Utilisation de coefficients tirés des tables modèles pour convertir PDₓ en nq₀ selon le groupe d’âge.</p>
+<p><strong>Étape 6 – Date de référence estimée</strong><br>
+t(x) = e + f·(P15/P20) + g·(P20/P25)</p>
+<p><strong>Étape 7 – Conversion logit de nq₀ en q₁ ou q₅</strong><br>
+1. Y(n) = 0.5 × ln(nq₀ / (1 – nq₀))<br>
+2. α = Y(n) – Y⁽ˢ⁾(n)<br>
+3. q₅ = exp(2(α + Y⁽ˢ⁾(5))) / [1 + exp(2(α + Y⁽ˢ⁾(5)))]</p>
+</section>
+<section id="tableau-estimations-indirectes-de-la-mortalité-mis-2017" class="level3">
+<h3 class="anchored" data-anchor-id="tableau-estimations-indirectes-de-la-mortalité-mis-2017">Tableau : Estimations indirectes de la mortalité (MIS 2017)</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Groupe d’âge</th>
+<th>Femmes</th>
+<th>Enfants nés</th>
+<th>Enfants décédés</th>
+<th>Parité moyenne (π)</th>
+<th>Proportion décédés (dᵢ)</th>
+<th>Coefficient kᵢ</th>
+<th>q(x)</th>
+<th>Date de référence</th>
+<th>Année estimée</th>
+<th>q(5)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>15–19</td>
+<td>1280</td>
+<td>1768</td>
+<td>156</td>
+<td>1.38</td>
+<td>0.088</td>
+<td>1.037</td>
+<td>0.091</td>
+<td>2.41</td>
+<td>2014.6</td>
+<td>0.107</td>
+</tr>
+<tr class="even">
+<td>20–24</td>
+<td>1326</td>
+<td>3811</td>
+<td>376</td>
+<td>2.87</td>
+<td>0.099</td>
+<td>0.995</td>
+<td>0.098</td>
+<td>4.32</td>
+<td>2012.7</td>
+<td>0.106</td>
+</tr>
+<tr class="odd">
+<td>25–29</td>
+<td>1192</td>
+<td>5032</td>
+<td>543</td>
+<td>4.22</td>
+<td>0.108</td>
+<td>1.007</td>
+<td>0.109</td>
+<td>6.59</td>
+<td>2010.4</td>
+<td>0.109</td>
+</tr>
+<tr class="even">
+<td>30–34</td>
+<td>1106</td>
+<td>5838</td>
+<td>711</td>
+<td>5.28</td>
+<td>0.122</td>
+<td>1.026</td>
+<td>0.125</td>
+<td>9.09</td>
+<td>2007.9</td>
+<td>0.114</td>
+</tr>
+<tr class="odd">
+<td>35–39</td>
+<td>676</td>
+<td>4205</td>
+<td>618</td>
+<td>6.22</td>
+<td>0.147</td>
+<td>1.035</td>
+<td>0.149</td>
+<td>11.78</td>
+<td>2005.2</td>
+<td>0.128</td>
+</tr>
+<tr class="even">
+<td>40–44</td>
+<td>541</td>
+<td>3602</td>
+<td>565</td>
+<td>6.66</td>
+<td>0.157</td>
+<td>1.006</td>
+<td>0.158</td>
+<td>14.70</td>
+<td>2002.3</td>
+<td>0.125</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="estimation-de-la-mortalite-par-la-methode-directe" class="level2">
+<h2 class="anchored" data-anchor-id="estimation-de-la-mortalite-par-la-methode-directe">3.2. Estimation de la mortalite par la methode directe :</h2>
+<p>La méthode directe consiste à reconstruire des taux de mortalité en utilisant les dates de naissance et, si applicable, de décès des enfants nés des femmes enquêtées. Cette méthode repose sur les données complètes de naissances vivantes enregistrées dans les enquêtes démographiques de type DHS.</p>
+<p>Pour ce faire, nous avons utilisé le package <code>DHS.rates</code> de R qui permet d’estimer les probabilités de décès (comme q1 et q5) sur des périodes définies avant l’enquête. Dans notre approche, nous avons opté pour une <strong>période de référence de 5 ans</strong> suivant la recommandation standard, en prenant soin d’éviter le <strong>chevauchement des fenêtres temporelles</strong>, afin de garantir l’indépendance des estimations successives.</p>
+<p>Ce choix permet d’obtenir des estimations cohérentes et comparables d’une enquête à une autre.</p>
+</section>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"><img src="images/Capture.JPG" class="img-fluid" width="495"></h2>
+</section>
+<section id="modelisation-de-la-tendance-par-regression-beta" class="level2">
+<h2 class="anchored" data-anchor-id="modelisation-de-la-tendance-par-regression-beta">3.3. Modelisation de la tendance par regression beta :</h2>
+<p>Pour produire une courbe de tendance robuste de la mortalité des moins de 5 ans, nous avons adopté une approche de modélisation utilisant la régression bêta avec un lien logit. Cette approche est particulièrement adaptée aux données de proportion comme les taux de mortalité, qui sont naturellement contraints entre 0 et 1.</p>
+<section id="transformation-des-données" class="level3">
+<h3 class="anchored" data-anchor-id="transformation-des-données">3.3.1 Transformation des données</h3>
+<p>Nous avons d’abord transformé nos taux de mortalité (exprimés pour 1000 naissances vivantes) en proportions, en appliquant une correction pour éviter les valeurs extrêmes 0 et 1 qui ne sont pas admissibles dans la distribution bêta :</p>
+<p>[ U5MR_{prop} = + ]</p>
+<p>Où : - ( U5MR ) représente le taux de mortalité des moins de 5 ans (pour 1000 naissances vivantes) - ( U5MR_{prop} ) est la proportion transformée utilisée dans le modèle - ( n ) est le nombre total d’observations</p>
+<p>Cette transformation garantit que toutes les valeurs sont strictement comprises entre 0 et 1.</p>
+<section id="spécification-du-modèle" class="level4">
+<h4 class="anchored" data-anchor-id="spécification-du-modèle">3.3.1 Spécification du modèle</h4>
+<p>Nous avons d’abord transformé nos taux de mortalité (qui sont exprimés pour 1000 naissances vivantes) en proportions, en appliquant une correction pour éviter les valeurs extrêmes 0 et 1 qui ne sont pas admissibles dans la distribution bêta :</p>
+<p><span class="math display">\[U5MR_{prop} = \frac{U5MR}{1000} \cdot \frac{n-1}{n} + \frac{0.5}{n}\]</span></p>
+<p>Où : - <span class="math inline">\(U5MR\)</span> représente le taux de mortalité des moins de 5 ans (pour 1000 naissances vivantes) - <span class="math inline">\(U5MR_{prop}\)</span> est la proportion transformée utilisée dans le modèle - <span class="math inline">\(n\)</span> est le nombre total d’observations</p>
+<p>Notre modèle utilise un modèle additif généralisé (GAM) avec une distribution bêta et un lien logit pour modéliser la relation non-linéaire entre le taux de mortalité et le temps :</p>
+<p><span class="math display">\[\text{logit}(E(U5MR_{prop})) = s(\text{année})\]</span></p>
+<p>Où : - <span class="math inline">\(s(\text{année})\)</span> est une fonction de lissage de type spline de régression cubique avec un degré de complexité maximal fixé à 10 nœuds - La fonction logit est définie comme <span class="math inline">\(\text{logit}(p) = \ln\left(\frac{p}{1-p}\right)\)</span></p>
+<p>Cette spécification permet de modéliser adéquatement la nature bornée des taux de mortalité tout en offrant la flexibilité nécessaire pour représenter des tendances non-linéaires. L’utilisation d’une spline de régression cubique avec un nombre maximum de nœuds fixé à 10 assure un équilibre optimal entre fidélité aux données et lissage de la courbe.</p>
+</section>
+</section>
+<section id="prédictions-et-intervalles-de-confiance" class="level3">
+<h3 class="anchored" data-anchor-id="prédictions-et-intervalles-de-confiance">3.3.3 Prédictions et intervalles de confiance</h3>
+<p>À partir du modèle ajusté, nous avons généré des prédictions pour chaque année de 1990 à 2023 (par intervalles de 2 ans), accompagnées d’intervalles de confiance à 95%. Les prédictions, obtenues sur l’échelle logit, ont ensuite été reconverties en taux de mortalité pour 1000 naissances vivantes à l’aide de la transformation inverse :</p>
+<p>[ U5MR_{est} = ^{-1}() = ]</p>
+<p>De même, les bornes inférieure et supérieure de l’intervalle de confiance ont été calculées par :</p>
+<p>[ U5MR_{lower} = ^{-1}( - 1.96 ) ]</p>
+<p>[ U5MR_{upper} = ^{-1}( + 1.96 ) ]</p>
+<p>Où : - ( ) est la valeur prédite sur l’échelle logit - ( ) est l’erreur standard de la prédiction - 1.96 est le quantile de la distribution normale correspondant à un intervalle de confiance à 95%</p>
+</section>
+</section>
+</section>
+<section id="outpouts" class="level1">
+<h1>4. Outpouts</h1>
+<section id="national" class="level2">
+<h2 class="anchored" data-anchor-id="national">4.1. National</h2>
+<section id="courbes-destimation-de-la-mortalite-par-sources-de-donnees" class="level3">
+<h3 class="anchored" data-anchor-id="courbes-destimation-de-la-mortalite-par-sources-de-donnees">4.1.1. Courbes d’estimation de la mortalite par sources de donnees</h3>
+<section id="a.-mis-2017" class="level4">
+<h4 class="anchored" data-anchor-id="a.-mis-2017">a. MIS 2017</h4>
+<p><img src="MICS17_NAT.png" class="img-fluid"></p>
+<p><img src="Rplot_COMp.png" class="img-fluid" width="705"></p>
+</section>
+<section id="b.-mis-2014" class="level4">
+<h4 class="anchored" data-anchor-id="b.-mis-2014">b. MIS 2014</h4>
+<p><img src="MIS14_nat.png" class="img-fluid"></p>
+</section>
+<section id="c.-dhs-2021" class="level4">
+<h4 class="anchored" data-anchor-id="c.-dhs-2021"><strong>c.&nbsp;DHS 2021</strong></h4>
+</section>
+<section id="section-1" class="level4">
+<h4 class="anchored" data-anchor-id="section-1"><img src="Rplot.DHS21.png" class="img-fluid"></h4>
+</section>
+</section>
+<section id="courbes-destimation-de-la-mortalite-par-sources-de-donnees-1" class="level3">
+<h3 class="anchored" data-anchor-id="courbes-destimation-de-la-mortalite-par-sources-de-donnees-1">4.1.1. Courbes d’estimation de la mortalite par sources de donnees</h3>
+<p><img src="Rplot.%20indirect_idrect_nat.png" class="img-fluid"></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Mortaly_Project_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="comparaison-courbes-tendance-lissee" class="level1">
+<h1>comparaison courbes tendance lissee <img src="comparaison_all_national.png" class="img-fluid"></h1>
+<section id="estimation-regionale" class="level2">
+<h2 class="anchored" data-anchor-id="estimation-regionale">4.2. Estimation regionale</h2>
+<section id="region-du-boucle-de-mouhoun" class="level3">
+<h3 class="anchored" data-anchor-id="region-du-boucle-de-mouhoun">4.2.1. Region du Boucle de Mouhoun</h3>
+<p>4.2.1.1. mortalite DHS 2021</p>
+<p><img src="Boucle%20du%20mouhoun.png" class="img-fluid"></p>
+<pre><code></code></pre>
+<p>4.2.2. Estimation mortalite q5</p>
+<p><img src="boucle%20du%20mouhoun_tendance.png" class="img-fluid"></p>
+<p><img src="mouhoun_national.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="heatmap-des-differentes-region-va-venir-plus-bas-apres-la-desc-reg" class="level2">
+<h2 class="anchored" data-anchor-id="heatmap-des-differentes-region-va-venir-plus-bas-apres-la-desc-reg">Heatmap des differentes region ( va venir plus bas apres la desc reg)</h2>
+<p><img src="heatmap.png" class="img-fluid"></p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
